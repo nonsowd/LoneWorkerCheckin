@@ -1,0 +1,6 @@
+@LoneWorkerCheckin.Api_HostAddress = http://localhost:5147
+
+GET {{LoneWorkerCheckin.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

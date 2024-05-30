@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\LoneWorkerCheckin.code-workspace = ..\LoneWorkerCheckin.code-workspace
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoneWorkerCheckin.Api", "LoneWorkerCheckin.Api\LoneWorkerCheckin.Api.csproj", "{70F1CBBE-45BF-466D-A39F-1133D0CCB9C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoneWorkerCheckin.Api", "LoneWorkerCheckin.Api\LoneWorkerCheckin.Api.csproj", "{70F1CBBE-45BF-466D-A39F-1133D0CCB9C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpScripts", "HttpScripts", "{785A41DE-3424-4F6E-8140-E51EB090A99C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

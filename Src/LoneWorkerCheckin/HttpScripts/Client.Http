@@ -1,0 +1,37 @@
+#https://localhost:7027/swagger/index.html
+
+@port = 7027
+@host = localhost
+
+### Checkin
+
+POST https://{{host}}:{{port}}/Checkin
+Content-Type: application/json
+
+{
+  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "areaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "gridReference": "string"
+}
+
+### Get Region
+
+GET https://{{host}}:{{port}}/Region
+
+### Get Site
+
+GET https://{{host}}:{{port}}/Site
+
+### Get User by email
+
+@unknownEmailAddress = zzzzzxxxyy@test.com
+
+GET https://{{host}}:{{port}}/User?email={{unknownEmailAddress}}
+
+###
+
+@knownEmailAddress = Test1@test.com
+
+GET https://{{host}}:{{port}}/User?email={{knownEmailAddress}}
+
+###

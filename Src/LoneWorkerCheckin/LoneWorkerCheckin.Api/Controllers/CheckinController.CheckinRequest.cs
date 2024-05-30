@@ -6,3 +6,5 @@ public class CheckinRequest
     public Guid AreaId { get; set; }
     public string GridReference { get; set; }
 }
+
+

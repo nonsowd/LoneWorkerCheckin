@@ -4,9 +4,26 @@ namespace LoneWorkerCheckin.Api.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase    
 {
-    [HttpGet(Name = "GetUserInformation")]
-    public async Task<ActionResult<UserResponse>> GetUserAsync (string email)
+    
+    private static readonly Dictionary<string, UserResponse> _fakeDatabase = new(StringComparer.CurrentCultureIgnoreCase)
     {
-        return null!;
+        { "test1@test.com", new UserResponse() { UserId = Guid.NewGuid() } },
+        { "test2@test.com", new UserResponse() { UserId = Guid.NewGuid() } }
+    };
+
+   
+
+    [HttpGet(Name = "GetUserInformation")]
+    public async Task<ActionResult<UserResponse>> GetUserAsync(string email)
+    {
+        if (_fakeDatabase.ContainsKey(email) == false)
+        {
+            return NotFound();
+        }
+
+        var response = _fakeDatabase[email];
+        return Ok(response);
+
     }
 }
+

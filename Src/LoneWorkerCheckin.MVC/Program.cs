@@ -1,9 +1,15 @@
+using LoneWorkerCheckin.Api.Client;
+using Refit;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddRefitClient<ILoneWorkerCheckinApiClient>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https+http://loneworkercheckin-api"));
 
 var app = builder.Build();
 

@@ -1,16 +1,17 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using LoneWorkerCheckin.MVC.Models;
+using LoneWorkerCheckin.Api.Client;
 
 namespace LoneWorkerCheckin.MVC.Controllers;
 
 public class LoginController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger <LoginController> _logger;
+    private readonly ILoneWorkerCheckinApiClient _loneWorkerCheckinApiClient;
 
-    public LoginController(ILogger<HomeController> logger)
+    public LoginController(ILogger <LoginController> logger, ILoneWorkerCheckinApiClient loneWorkerCheckinApiClient)
     {
         _logger = logger;
+        _loneWorkerCheckinApiClient = loneWorkerCheckinApiClient;
     }
 
     public IActionResult Index()

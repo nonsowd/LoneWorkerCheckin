@@ -3,14 +3,15 @@ using LoneWorkerCheckin.Api.Client;
 
 namespace LoneWorkerCheckin.MVC.Controllers;
 
-public class LoginController : Controller
+public class LoginController : ControllerBase
 {
-    private readonly ILogger <LoginController> _logger;
     private readonly ILoneWorkerCheckinApiClient _loneWorkerCheckinApiClient;
 
-    public LoginController(ILogger <LoginController> logger, ILoneWorkerCheckinApiClient loneWorkerCheckinApiClient)
+    public LoginController(
+        ILogger<LoginController> logger,
+        ILoneWorkerCheckinApiClient loneWorkerCheckinApiClient)
+        : base(logger) 
     {
-        _logger = logger;
         _loneWorkerCheckinApiClient = loneWorkerCheckinApiClient;
     }
 

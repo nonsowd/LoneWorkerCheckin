@@ -4,22 +4,15 @@ using LoneWorkerCheckin.MVC.Models;
 
 namespace LoneWorkerCheckin.MVC.Controllers;
 
-public class HomeController : Controller
+public class HomeController : ControllerBase
 {
-    private readonly ILogger<HomeController> _logger;
-
     public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
+        : base(logger) { }
 
     public IActionResult Index()
     {
-        return View();
-    }
+        _logger.LogInformation("moo");
 
-    public IActionResult Privacy()
-    {
         return View();
     }
 

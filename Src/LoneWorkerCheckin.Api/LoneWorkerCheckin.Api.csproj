@@ -5,6 +5,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LoneWorkerCheckin.Infrastructure\LoneWorkerCheckin.Infrastructure.csproj" />
     <ProjectReference Include="..\LoneWorkerCheckin.ServiceDefaults\LoneWorkerCheckin.ServiceDefaults.csproj" />
   </ItemGroup>
 

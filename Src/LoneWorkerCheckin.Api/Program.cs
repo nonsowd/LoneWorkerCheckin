@@ -1,8 +1,10 @@
+using LoneWorkerCheckin.Infrastructure.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-// Add services to the container.
+builder.AddSqlServerDbContext<ApplicationDbContext>("loneworkercheckin-db");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

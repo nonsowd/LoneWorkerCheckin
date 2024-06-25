@@ -4,6 +4,7 @@ namespace LoneWorkerCheckin.Api.Controllers;
 [Route("[controller]")]
 public class SiteController : ControllerBase
 {
+
     [HttpGet(Name = "GetSiteInformation")]
     public async Task<ActionResult<List<SiteResponse>>> GetSitesByRegionAsync(Guid region)
     {

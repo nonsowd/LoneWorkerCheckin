@@ -18,6 +18,9 @@ app.MapDefaultEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    using var serviceScope = app.Services.CreateScope();
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await dbContext.EnsureDatabaseIsSetupAsync();
     app.UseSwagger();
     app.UseSwaggerUI();
 }

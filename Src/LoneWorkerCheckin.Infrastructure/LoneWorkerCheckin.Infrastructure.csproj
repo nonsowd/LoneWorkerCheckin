@@ -18,4 +18,8 @@
     <Folder Include="EntityFramework\Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LoneWorkerCheckin.Domain\LoneWorkerCheckin.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

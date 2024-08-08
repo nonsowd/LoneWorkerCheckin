@@ -6,7 +6,7 @@ public class SiteController : ControllerBase
 {
 
     [HttpGet(Name = "GetSiteInformation")]
-    public async Task<ActionResult<List<SiteResponse>>> GetSitesByRegionAsync(Guid region)
+    public async Task<ActionResult<List<SiteResponse>>> GetSitesByRegionAsync(Guid regionId)
     {
         return null!;
     }

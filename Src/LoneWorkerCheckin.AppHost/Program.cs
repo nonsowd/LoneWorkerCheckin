@@ -6,7 +6,7 @@ var db = builder.AddSqlServer("loneworkercheckin-sqlserver")
 var loneworkercheckinserviceapi = builder.AddProject<Projects.LoneWorkerCheckin_Api>("loneworkercheckin-api")
     .WithReference(db);
 
-builder.AddProject<Projects.LoneWorkerCheckin_MVC>("loneworkercheckin-mvc")
+builder.AddProject<Projects.LoneWorkerCheckin_Blazor>("loneworkercheckin-blazor")
     .WithReference(loneworkercheckinserviceapi);
 
 builder.Build().Run();

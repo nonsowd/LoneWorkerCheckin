@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoneWorkerCheckin.Api\LoneWorkerCheckin.Api.csproj" />
-    <ProjectReference Include="..\LoneWorkerCheckin.MVC\LoneWorkerCheckin.MVC.csproj" />
+    <ProjectReference Include="..\LoneWorkerCheckin.Blazor\LoneWorkerCheckin.Blazor.csproj" />
   </ItemGroup>
 
 </Project>

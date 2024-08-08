@@ -388,3 +388,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Src/DevNotes.md
+/Src/image_2024_08_01T19_09_43_059Z.png

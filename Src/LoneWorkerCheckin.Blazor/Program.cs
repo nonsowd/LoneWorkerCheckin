@@ -1,3 +1,9 @@
+/*
+ * useful links
+ * https://www.mudblazor.com/docs/overview
+ */
+
+
 using MudBlazor.Services;
 using LoneWorkerCheckin.Blazor.Components;
 using LoneWorkerCheckin.Api.Client;

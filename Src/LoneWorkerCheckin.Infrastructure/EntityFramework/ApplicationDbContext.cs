@@ -16,7 +16,6 @@ public class ApplicationDbContext : DbContext
 
     public async Task EnsureDatabaseIsSetupAsync()
     {
-        await Task.Delay(TimeSpan.FromSeconds(5));
         await Database.MigrateAsync();
     }
 

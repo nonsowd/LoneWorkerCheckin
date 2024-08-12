@@ -1,0 +1,86 @@
+@page "/checkin"
+
+@using LoneWorkerCheckin.Api.Client
+@using LoneWorkerCheckin.Api.Controllers
+
+@inject  ILoneWorkerCheckinApiClient _loneWorkerCheckinApiClient;
+
+  
+@* @inject ILogger _logger; *@
+
+
+
+<PageTitle>@_title</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">@_title</MudText>
+
+
+<div class="d-flex align-content-center">
+           
+    <MudStack>
+      
+        <MudStack Row="true" Justify="Justify.SpaceBetween">
+            <MudText class="mb-2" Typo="Typo.h6">Region</MudText>
+            @if (RegionList != null)
+            {
+                <MudSelect T="Guid" Variant="Variant.Filled" ValueChanged="OnSelectedRegionChanged">
+                    @foreach (var item in RegionList)
+                    {
+                        <MudSelectItem Value="@item.RegionId">@item.RegionName</MudSelectItem>
+                    }
+                </MudSelect>
+
+            }
+            else
+            {
+                <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+            }
+        </MudStack>
+
+
+
+        <MudStack Row="true" Justify="Justify.SpaceBetween">
+            <MudText class="mb-2" Typo="Typo.h6">Site</MudText>
+            @if (SiteList != null)
+            {
+                <MudSelect T="Guid" Variant="Variant.Filled">
+                    @foreach (var item in SiteList)
+                    {
+                        <MudSelectItem Value="@item.SiteId">@item.SiteName</MudSelectItem>
+                    }
+                </MudSelect>
+            }
+            @if(ShowSiteLoading && SiteList == null)
+            {
+                <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+            }
+        </MudStack>
+
+    </MudStack>
+      
+</div>
+
+
+@code {
+    private const string _title = "Checkin";
+    private List<RegionResponse>? RegionList { get; set; } 
+    private List<SiteResponse>? SiteList { get; set; }
+    private bool ShowSiteLoading { get; set; } = false;
+
+    private async void OnSelectedRegionChanged(Guid  newSelectedRegionId)
+    {
+        SiteList = await _loneWorkerCheckinApiClient.GetSitesByRegionAsync(newSelectedRegionId);
+       
+    }
+
+    private string SelectedRegion { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        RegionList = await _loneWorkerCheckinApiClient.GetRegionListAsync();
+    }
+
+
+}
+
+

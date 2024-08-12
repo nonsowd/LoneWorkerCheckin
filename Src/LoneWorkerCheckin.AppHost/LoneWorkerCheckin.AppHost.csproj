@@ -14,6 +14,9 @@
   <ItemGroup>
     <ProjectReference Include="..\LoneWorkerCheckin.Api\LoneWorkerCheckin.Api.csproj" />
     <ProjectReference Include="..\LoneWorkerCheckin.Blazor\LoneWorkerCheckin.Blazor.csproj" />
+      <ProjectReference Include="..\WaitForDependencies.Aspire.Hosting\WaitForDependencies.Aspire.Hosting.csproj">
+          <IsAspireProjectResource>false</IsAspireProjectResource>
+      </ProjectReference>
   </ItemGroup>
 
 </Project>

@@ -20,8 +20,9 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<RegionEntity> Regions { get; set; } = null!;
-
     public DbSet<SiteEntity> Sites { get; set; } = null!;
+    public DbSet<LocationEntity> Locations { get; set; } = null!;
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,6 +31,8 @@ public class ApplicationDbContext : DbContext
         OnModelRegionCreating(modelBuilder, regionSeedData);
 
         OnModelSiteCreating(modelBuilder, regionSeedData);
+
+        OnModelLocationCreating(modelBuilder);
 
     }
 
@@ -63,6 +66,20 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<SiteEntity>().HasData(siteSeedData);
     }
 
+    private void OnModelLocationCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<LocationEntity>().ToTable("Locations");
+        modelBuilder.Entity<LocationEntity>().HasKey(x => x.LocationId);
+
+        modelBuilder.Entity<LocationEntity>().Property(x => x.LocationName)
+            .IsRequired().IsUnicode().HasMaxLength(LocationEntity.LocationNameMaxLenght);
+
+        modelBuilder.Entity<LocationEntity>().HasIndex(x => x.LocationName).IsUnique();
+
+        var locationSeedData = GetLocationSeedData();
+        modelBuilder.Entity<LocationEntity>().HasData(locationSeedData);
+    }
+
     private List<RegionEntity> GetRegionSeedData()
         => new List<RegionEntity>()
         {
@@ -86,7 +103,14 @@ public class ApplicationDbContext : DbContext
             new SiteEntity() { SiteId = Guid.NewGuid(), RegionId = southeastid, SiteName = "Brighton" },
             new SiteEntity() { SiteId = Guid.NewGuid(), RegionId = walesid, SiteName = "Cardiff" },
             new SiteEntity() { SiteId = Guid.NewGuid(), RegionId = walesid, SiteName = "Bangor" }
-
         };
     }
+
+    private List<LocationEntity> GetLocationSeedData()
+        => new List<LocationEntity>()
+        {
+            new LocationEntity() { LocationId = Guid.NewGuid(), LocationName = "Kitchen" },
+            new LocationEntity() { LocationId = Guid.NewGuid(), LocationName = "Dinning room" },
+            new LocationEntity() { LocationId = Guid.NewGuid(), LocationName = "Reception" }
+        };
 }

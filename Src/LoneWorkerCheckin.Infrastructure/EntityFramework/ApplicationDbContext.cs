@@ -21,6 +21,8 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<RegionEntity> Regions { get; set; } = null!;
 
+    public DbSet<SiteEntity> Sites { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         var regionSeedData = GetRegionSeedData();
@@ -28,8 +30,6 @@ public class ApplicationDbContext : DbContext
         OnModelRegionCreating(modelBuilder, regionSeedData);
 
         OnModelSiteCreating(modelBuilder, regionSeedData);
-
-        
 
     }
 

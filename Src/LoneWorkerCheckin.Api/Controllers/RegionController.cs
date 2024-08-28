@@ -17,7 +17,7 @@ public class RegionController : ControllerBase
     public async Task<ActionResult<List<RegionResponse>>> GetRegionListAsync()
     {
         var data = _dbContext.Regions.ToList();
-        var response = data.Select(a => new RegionResponse() { RegionId = a.RegionId, RegionName = a.RegionName }).ToList();
+        var response = data.Select(dataItem => new RegionResponse() { RegionId = dataItem.RegionId, RegionName = dataItem.RegionName }).ToList();
         return Ok(response);
     }        
 }                               

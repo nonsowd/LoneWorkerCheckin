@@ -1,6 +1,6 @@
 namespace LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
 
-internal class SiteEntity 
+public class SiteEntity 
 {
     public const int SiteNameMaxLenght = 255;
 

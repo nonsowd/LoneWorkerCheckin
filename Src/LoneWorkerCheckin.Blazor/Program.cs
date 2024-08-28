@@ -8,6 +8,7 @@ using MudBlazor.Services;
 using LoneWorkerCheckin.Blazor.Components;
 using LoneWorkerCheckin.Api.Client;
 using Refit;
+using LoneWorkerCheckin.Blazor.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,8 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddTransient<CheckinPageViewModel>();
 
 var app = builder.Build();
 

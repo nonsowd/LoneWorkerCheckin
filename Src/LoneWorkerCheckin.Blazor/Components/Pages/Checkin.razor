@@ -2,17 +2,15 @@
 
 @using LoneWorkerCheckin.Api.Client
 @using LoneWorkerCheckin.Api.Controllers
+@using LoneWorkerCheckin.Blazor.ViewModels
 
-@inject  ILoneWorkerCheckinApiClient _loneWorkerCheckinApiClient;
-
-  
-@* @inject ILogger _logger; *@
+@inject CheckinPageViewModel _viewModel;
 
 
 
-<PageTitle>@_title</PageTitle>
+<PageTitle>@_viewModel.PageTitle</PageTitle>
 
-<MudText Typo="Typo.h4" GutterBottom="true">@_title</MudText>
+<MudText Typo="Typo.h4" GutterBottom="true">@_viewModel.PageTitle</MudText>
 
 
 <div class="d-flex align-content-center">
@@ -21,17 +19,17 @@
       
         <MudStack Row="true" Justify="Justify.SpaceBetween">
             <MudText class="mb-2" Typo="Typo.h6">Region</MudText>
-            @if (RegionList != null)
-            {
-                <MudSelect T="Guid" Variant="Variant.Filled" ValueChanged="OnSelectedRegionChanged">
-                    @foreach (var item in RegionList)
+           
+                <MudSelect T="string" Variant="Variant.Filled" ValueChanged="_viewModel.OnSelectedRegionChanged">
+                @if (_viewModel.RegionList != null)
+                {
+                    @foreach (var item in _viewModel.RegionList)
                     {
                         <MudSelectItem Value="@item.RegionId">@item.RegionName</MudSelectItem>
                     }
+                }
                 </MudSelect>
-
-            }
-            else
+            @if (_viewModel.ShowLoading && _viewModel.RegionList == null)
             {
                 <MudProgressCircular Color="Color.Default" Indeterminate="true" />
             }
@@ -41,16 +39,19 @@
 
         <MudStack Row="true" Justify="Justify.SpaceBetween">
             <MudText class="mb-2" Typo="Typo.h6">Site</MudText>
-            @if (SiteList != null)
-            {
-                <MudSelect T="Guid" Variant="Variant.Filled">
-                    @foreach (var item in SiteList)
+           
+                <MudSelect T="string" Variant="Variant.Filled">
+                @if (_viewModel.SiteList != null)
+                {
+                    @foreach (var item in _viewModel.SiteList)
                     {
                         <MudSelectItem Value="@item.SiteId">@item.SiteName</MudSelectItem>
                     }
+                }
                 </MudSelect>
-            }
-            @if(ShowSiteLoading && SiteList == null)
+
+            
+            @if (_viewModel.ShowLoading && _viewModel.SiteList == null)
             {
                 <MudProgressCircular Color="Color.Default" Indeterminate="true" />
             }
@@ -60,27 +61,8 @@
       
 </div>
 
-
-@code {
-    private const string _title = "Checkin";
-    private List<RegionResponse>? RegionList { get; set; } 
-    private List<SiteResponse>? SiteList { get; set; }
-    private bool ShowSiteLoading { get; set; } = false;
-
-    private async void OnSelectedRegionChanged(Guid  newSelectedRegionId)
-    {
-        SiteList = await _loneWorkerCheckinApiClient.GetSitesByRegionAsync(newSelectedRegionId);
-       
-    }
-
-    private string SelectedRegion { get; set; }
-
+@code
+{
     protected override async Task OnInitializedAsync()
-    {
-        RegionList = await _loneWorkerCheckinApiClient.GetRegionListAsync();
-    }
-
-
+        => await _viewModel.OnInitializedAsync();
 }
-
-

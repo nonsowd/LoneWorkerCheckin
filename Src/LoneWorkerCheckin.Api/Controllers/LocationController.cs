@@ -1,3 +1,4 @@
+using LoneWorkerCheckin.Infrastructure.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
 
 namespace LoneWorkerCheckin.Api.Controllers;
@@ -6,10 +7,19 @@ namespace LoneWorkerCheckin.Api.Controllers;
 [Route("[controller]")]
 public class LocationController : ControllerBase
 {
+    private readonly ApplicationDbContext _dbContext;
+
+    public LocationController(ApplicationDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
     [Authorize(Roles = "Admin")] // TODO: implement jwt authentication and role based authorisation
     [HttpGet(Name = "GetLocationInformation")]
-    public async Task<ActionResult<List<LocationResponse>>> GetLocationBySiteAsync(Guid siteId)
+    public async Task<ActionResult<List<LocationResponse>>> GetLocationListyAsync()
     {
-        return null!;
+        var data = _dbContext.Locations.ToList();
+        var response = data.Select(dataItem => new LocationResponse() { LocationId = dataItem.LocationId, LocationName = dataItem.LocationName }).ToList();
+        return Ok(response);
     }
 }

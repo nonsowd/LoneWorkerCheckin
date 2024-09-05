@@ -17,8 +17,9 @@ public class CheckinPageViewModel
 
     public List<RegionViewModel>? RegionList { get; set; }
     public List<SiteViewModel>? SiteList { get; set; }
-
     public List<LocationViewModel>? LocationList { get; set; }
+
+    public string TaskDescription { get; set; }
 
     public bool ShowLoading { get; set; } = false;
 

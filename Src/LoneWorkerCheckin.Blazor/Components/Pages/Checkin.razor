@@ -3,6 +3,7 @@
 @using LoneWorkerCheckin.Api.Client
 @using LoneWorkerCheckin.Api.Controllers
 @using LoneWorkerCheckin.Blazor.ViewModels
+@using LoneWorkerCheckin.Blazor.Components.Pages
 
 @inject CheckinPageViewModel _viewModel;
 
@@ -14,76 +15,111 @@
 
 
 <div class="d-flex align-content-center">
+    <MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Start" Reverse="false">
+        <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+            <ItemContent>
+                <MudCard Outlined="true" Elevation="25">
+                    <MudCardContent>
+                        <MudText Typo="Typo.h6">Checkin</MudText>
+                        <MudStack>
+
+                            <MudStack Row="true" Justify="Justify.SpaceBetween">
+                                <MudText class="mb-2" Typo="Typo.h6">Region</MudText>
+
+                                <MudSelect T="string" Variant="Variant.Filled" ValueChanged="_viewModel.OnSelectedRegionChanged">
+                                    @if (_viewModel.RegionList != null)
+                                    {
+                                        @foreach (var item in _viewModel.RegionList)
+                                        {
+                                            <MudSelectItem Value="@item.RegionId">@item.RegionName</MudSelectItem>
+                                        }
+                                    }
+                                </MudSelect>
+                                @if (_viewModel.ShowLoading && _viewModel.RegionList == null)
+                                {
+                                    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+                                }
+                            </MudStack>
+
+
+
+                            <MudStack Row="true" Justify="Justify.SpaceBetween">
+                                <MudText class="mb-2" Typo="Typo.h6">Site</MudText>
+
+                                <MudSelect T="string" Variant="Variant.Filled">
+                                    @if (_viewModel.SiteList != null)
+                                    {
+                                        @foreach (var item in _viewModel.SiteList)
+                                        {
+                                            <MudSelectItem Value="@item.SiteId">@item.SiteName</MudSelectItem>
+                                        }
+                                    }
+                                </MudSelect>
+
+
+                                @if (_viewModel.ShowLoading && _viewModel.SiteList == null)
+                                {
+                                    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+                                }
+                            </MudStack>
+
+
+                            <MudStack Row="true" Justify="Justify.SpaceBetween">
+                                <MudText class="mb-2" Typo="Typo.h6">Location</MudText>
+
+                                <MudSelect T="string" Variant="Variant.Filled">
+                                    @if (_viewModel.LocationList != null)
+                                    {
+                                        @foreach (var item in _viewModel.LocationList)
+                                        {
+                                            <MudSelectItem Value="@item.LocationId">@item.LocationName</MudSelectItem>
+                                        }
+                                    }
+                                </MudSelect>
+
+
+                                @if (_viewModel.ShowLoading && _viewModel.LocationList == null)
+                                {
+                                    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+                                }
+                            </MudStack>
+
+                            <MudTextField @bind-Value="_viewModel.TaskDescription" Label="Task Description" Variant="Variant.Outlined" Margin="Margin.Dense" />
+
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </ItemContent>
            
-    <MudStack>
-      
-        <MudStack Row="true" Justify="Justify.SpaceBetween">
-            <MudText class="mb-2" Typo="Typo.h6">Region</MudText>
+        </MudTimelineItem>
+        <MudTimelineItem Color="Color.Warning" Variant="Variant.Filled">
+            <ItemContent>
+                <MudAlert Severity="Severity.Warning">The reactor temperature exceeds the optimal range</MudAlert>
+            </ItemContent>
            
-                <MudSelect T="string" Variant="Variant.Filled" ValueChanged="_viewModel.OnSelectedRegionChanged">
-                @if (_viewModel.RegionList != null)
-                {
-                    @foreach (var item in _viewModel.RegionList)
-                    {
-                        <MudSelectItem Value="@item.RegionId">@item.RegionName</MudSelectItem>
-                    }
-                }
-                </MudSelect>
-            @if (_viewModel.ShowLoading && _viewModel.RegionList == null)
-            {
-                <MudProgressCircular Color="Color.Default" Indeterminate="true" />
-            }
-        </MudStack>
+        </MudTimelineItem>
+        <MudTimelineItem Color="Color.Error" Variant="Variant.Filled">
+            <ItemContent>
+               <StartTask />
 
-
-
-        <MudStack Row="true" Justify="Justify.SpaceBetween">
-            <MudText class="mb-2" Typo="Typo.h6">Site</MudText>
+             
+            </ItemContent>
            
-                <MudSelect T="string" Variant="Variant.Filled">
-                @if (_viewModel.SiteList != null)
-                {
-                    @foreach (var item in _viewModel.SiteList)
-                    {
-                        <MudSelectItem Value="@item.SiteId">@item.SiteName</MudSelectItem>
-                    }
-                }
-                </MudSelect>
-
-            
-            @if (_viewModel.ShowLoading && _viewModel.SiteList == null)
-            {
-                <MudProgressCircular Color="Color.Default" Indeterminate="true" />
-            }
-        </MudStack>
+        </MudTimelineItem>
+    </MudTimeline>
 
 
-        <MudStack Row="true" Justify="Justify.SpaceBetween">
-            <MudText class="mb-2" Typo="Typo.h6">Location</MudText>
-           
-                <MudSelect T="string" Variant="Variant.Filled">
-                @if (_viewModel.LocationList != null)
-                {
-                    @foreach (var item in _viewModel.LocationList)
-                    {
-                        <MudSelectItem Value="@item.LocationId">@item.LocationName</MudSelectItem>
-                    }
-                }
-                </MudSelect>
-
-            
-            @if (_viewModel.ShowLoading && _viewModel.LocationList == null)
-            {
-                <MudProgressCircular Color="Color.Default" Indeterminate="true" />
-            }
-        </MudStack>
-
-    </MudStack>
+    
       
 </div>
 
 @code
 {
+    private TimelinePosition _position { get; set; } = TimelinePosition.Start;
+    private TimelineOrientation _orientation { get; set; } = TimelineOrientation.Vertical;
+    private bool _reverse { get; set; }
+
+
     protected override async Task OnInitializedAsync()
         => await _viewModel.OnInitializedAsync();
 }

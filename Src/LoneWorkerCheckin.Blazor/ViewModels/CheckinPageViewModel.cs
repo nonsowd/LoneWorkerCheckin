@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using LoneWorkerCheckin.Api.Client;
 using LoneWorkerCheckin.Api.Controllers;
 
@@ -16,6 +17,8 @@ public class CheckinPageViewModel
 
     public List<RegionViewModel>? RegionList { get; set; }
     public List<SiteViewModel>? SiteList { get; set; }
+
+    public List<LocationViewModel>? LocationList { get; set; }
 
     public bool ShowLoading { get; set; } = false;
 
@@ -42,6 +45,14 @@ public class CheckinPageViewModel
 
     public async Task OnInitializedAsync()
     {
+        await GetRegion();
+
+        await GetLocations();
+       
+    }
+
+    private async Task GetRegion()
+    {
         var response = await _loneWorkerCheckinApiClient.GetRegionListAsync();
         RegionList = response.Select(dataItem
             => new RegionViewModel()
@@ -52,25 +63,17 @@ public class CheckinPageViewModel
             .ToList();
     }
 
+    private async Task GetLocations()
+    {
+        var response = await _loneWorkerCheckinApiClient.GetLocationListsAsync();
+        LocationList = response.Select(dataItem
+            => new LocationViewModel()
+            {
+                LocationId = dataItem.LocationId.ToString(),
+                LocationName = dataItem.LocationName
+            })
+            .ToList();
 
-}
-
-public sealed class RegionViewModel
-{
-    public string RegionId { get; set; } = string.Empty;
-    public string RegionName { get; set; } = string.Empty;
-}
-
-public sealed class SiteViewModel
-{
-    public string SiteId { get; set; } = string.Empty;
-    public string SiteName { get; set; } = string.Empty;
-    public List<SiteLocationResponse> Locations { get; } = [];
-}
-
-public sealed class SiteLocationViewModel
-{
-    public string LocationId { get; set; } = string.Empty;
-    public string LocationName { get; set; } = string.Empty;
+    }
 }
 

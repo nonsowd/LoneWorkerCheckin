@@ -15,7 +15,7 @@ public interface ILoneWorkerCheckinApiClient
     Task<List<RegionResponse>> GetRegionListAsync();
 
     [Get("/location")]
-    Task<List<LocationResponse>> GetLocationBySiteAsync(Guid siteId);
+    Task<List<LocationResponse>> GetLocationListsAsync();
 
     [Post("/checkin")]
     Task PostCheckinAsync(CheckinRequest checkin);

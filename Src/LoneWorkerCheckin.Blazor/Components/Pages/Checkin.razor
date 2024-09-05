@@ -57,6 +57,27 @@
             }
         </MudStack>
 
+
+        <MudStack Row="true" Justify="Justify.SpaceBetween">
+            <MudText class="mb-2" Typo="Typo.h6">Location</MudText>
+           
+                <MudSelect T="string" Variant="Variant.Filled">
+                @if (_viewModel.LocationList != null)
+                {
+                    @foreach (var item in _viewModel.LocationList)
+                    {
+                        <MudSelectItem Value="@item.LocationId">@item.LocationName</MudSelectItem>
+                    }
+                }
+                </MudSelect>
+
+            
+            @if (_viewModel.ShowLoading && _viewModel.LocationList == null)
+            {
+                <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+            }
+        </MudStack>
+
     </MudStack>
       
 </div>

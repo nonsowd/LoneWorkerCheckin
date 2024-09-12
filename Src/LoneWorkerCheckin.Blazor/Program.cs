@@ -37,6 +37,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddTransient<CheckinPageViewModel>();
+builder.Services.AddTransient<StartTaskComponentViewModel>();
 
 var app = builder.Build();
 

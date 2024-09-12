@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Components\Pages\StartTask.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MudBlazor" />
   </ItemGroup>
 
@@ -17,17 +13,5 @@
     <ProjectReference Include="..\LoneWorkerCheckin.Api.Client\LoneWorkerCheckin.Api.Client.csproj" />
     <ProjectReference Include="..\LoneWorkerCheckin.Api\LoneWorkerCheckin.Api.csproj" />
     <ProjectReference Include="..\LoneWorkerCheckin.ServiceDefaults\LoneWorkerCheckin.ServiceDefaults.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Components\Pages\StartTask.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Components\Pages\StartTask.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Components\Pages\StartTask.razor" />
   </ItemGroup>
 </Project>

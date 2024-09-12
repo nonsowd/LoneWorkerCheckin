@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Design|AnyCPU'">
+    <DefineConstants>$(DefineConstants);DESIGN</DefineConstants>
+    <Configurations>Debug;Release;Design</Configurations>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Remove="Components\Pages\StartTask.razor" />
   </ItemGroup>

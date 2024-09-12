@@ -14,8 +14,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+// NOTE:
+// Design build configuration was cloned from debug and defines the DESIGN conditional compliation arg
+// This is used to replace the real ApiClient in DI with a mock containing sample data to
+// allow Blazor quick startup time when doing UI design hot reload.
+#if DESIGN
+
+builder.Services.AddScoped<ILoneWorkerCheckinApiClient, DesignTimeLoneWorkerCheckinApiClient>();
+
+#else
+
 builder.Services.AddRefitClient<ILoneWorkerCheckinApiClient>()
     .ConfigureHttpClient(c => c.BaseAddress = new Uri("https+http://loneworkercheckin-api"));
+
+#endif
 
 // Add MudBlazor services
 builder.Services.AddMudServices();

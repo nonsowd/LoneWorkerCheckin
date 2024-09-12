@@ -1,0 +1,49 @@
+@page "/checkin"
+
+@using LoneWorkerCheckin.Api.Client
+@using LoneWorkerCheckin.Api.Controllers
+@using LoneWorkerCheckin.Blazor.ViewModels
+@using LoneWorkerCheckin.Blazor.Components.Pages
+@using MudBlazor
+
+@inject CheckinPageViewModel _viewModel;
+
+
+<PageTitle>@_viewModel.PageTitle</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">@_viewModel.PageTitle</MudText>
+
+
+<div class="d-flex align-content-center">
+    <MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Start" Reverse="false">
+        <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+            
+            <ItemContent>
+               <StartTask>
+
+               </StartTask>
+               
+            </ItemContent>
+           
+        </MudTimelineItem>
+        <MudTimelineItem Color="Color.Warning" Variant="Variant.Filled">
+            <ItemContent>
+                <MudAlert Severity="Severity.Warning">The reactor temperature exceeds the optimal range</MudAlert>
+            </ItemContent>
+           
+        </MudTimelineItem>
+        <MudTimelineItem Color="Color.Error" Variant="Variant.Filled">
+            <ItemContent>
+
+             
+            </ItemContent>
+           
+        </MudTimelineItem>
+    </MudTimeline>
+
+
+    
+      
+</div>
+
+

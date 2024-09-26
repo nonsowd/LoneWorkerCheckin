@@ -9,6 +9,7 @@ using LoneWorkerCheckin.Blazor.Components;
 using LoneWorkerCheckin.Api.Client;
 using Refit;
 using LoneWorkerCheckin.Blazor.ViewModels;
+using LoneWorkerCheckin.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,9 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddTransient<CheckinPageViewModel>();
 builder.Services.AddTransient<StartTaskComponentViewModel>();
+
+//JS Interop
+builder.Services.AddScoped<IGeoLocationBroker, GeoLocationBroker>();
 
 var app = builder.Build();
 

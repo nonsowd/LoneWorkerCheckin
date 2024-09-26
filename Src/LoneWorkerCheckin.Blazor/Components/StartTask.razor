@@ -1,5 +1,9 @@
+@using LoneWorkerCheckin.Blazor.Services
 @using LoneWorkerCheckin.Blazor.ViewModels
 @inject StartTaskComponentViewModel _viewModel;
+@* @inject IJSRuntime JS; *@
+@inject IGeoLocationBroker geoLocation;
+
 
 <div>
     <MudCard Outlined="true" Elevation="25">
@@ -69,6 +73,9 @@
                 </MudStack>
 
                 <MudTextField @bind-Value="_viewModel.TaskDescription" Label="Task Description" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                <MudTextField @bind-Value="_viewModel.GPSLocation" Label="GPS Location" Variant="Variant.Outlined" ReadOnly="true" Margin="Margin.Dense" />
+
+
 
             </MudStack>
         </MudCardContent>
@@ -79,5 +86,27 @@
 @code
 {
     protected override async Task OnInitializedAsync()
-        => await _viewModel.OnInitializedAsync();
+    {
+        await _viewModel.OnInitializedAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        geoLocation.OnGeolocationPositionError += OnGeolocationPositionError;
+        geoLocation.OnCoordinatesChanged += OnCoordinatesChanaged;
+        await geoLocation.RequestGeoLocationAsync();
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async ValueTask OnCoordinatesChanaged(Coordinate coordinates)
+    {
+        _viewModel.GPSLocation = coordinates.ToString();
+        this.StateHasChanged();
+    }
+
+    private async ValueTask OnGeolocationPositionError(GeolocationPositionError error)
+    {
+        throw new Exception($"Error obtaining Geolocation position: Code: {error.Code}, Message: '{error.Message}'");
+    }
 }

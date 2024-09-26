@@ -5,21 +5,24 @@ namespace LoneWorkerCheckin.Blazor.ViewModels;
 public class StartTaskComponentViewModel
 {
     private readonly ILoneWorkerCheckinApiClient _loneWorkerCheckinApiClient;
+   
 
     public StartTaskComponentViewModel(ILoneWorkerCheckinApiClient loneWorkerCheckinApiClient)
     {
         _loneWorkerCheckinApiClient = loneWorkerCheckinApiClient;
+        
     }
-
-    
 
     public List<RegionViewModel>? RegionList { get; set; }
     public List<SiteViewModel>? SiteList { get; set; }
     public List<LocationViewModel>? LocationList { get; set; }
 
     public string TaskDescription { get; set; }
+    public string GPSLocation { get; set; }
 
     public bool ShowLoading { get; set; } = false;
+    public string SelectedRegion { get; set; }
+
 
 
     public async void OnSelectedRegionChanged(string rawSelectedRegionId)
@@ -40,14 +43,11 @@ public class StartTaskComponentViewModel
             .ToList();
     }
 
-    public string SelectedRegion { get; set; }
-
-    public async Task OnInitializedAsync()
+    public async Task OnInitializedAsync() 
     {
         await GetRegion();
 
         await GetLocations();
-
     }
 
     private async Task GetRegion()
@@ -72,6 +72,5 @@ public class StartTaskComponentViewModel
                 LocationName = dataItem.LocationName
             })
             .ToList();
-
     }
 }

@@ -20,4 +20,11 @@ public class RegionController : ControllerBase
         var response = data.Select(dataItem => new RegionResponse() { RegionId = dataItem.RegionId, RegionName = dataItem.RegionName }).ToList();
         return Ok(response);
     }        
-}                               
+}
+
+public class RegionResponse
+{
+    public Guid RegionId { get; set; }
+    public string RegionName { get; set; } = string.Empty;
+}
+

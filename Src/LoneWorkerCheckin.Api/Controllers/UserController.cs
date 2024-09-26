@@ -11,8 +11,6 @@ public class UserController : ControllerBase
         { "test2@test.com", new UserResponse() { UserId = Guid.NewGuid() } }
     };
 
-   
-
     [HttpGet(Name = "GetUserInformation")]
     public async Task<ActionResult<UserResponse>> GetUserAsync(string email)
     {
@@ -27,3 +25,7 @@ public class UserController : ControllerBase
     }
 }
 
+public class UserResponse
+{
+    public Guid UserId { get; set; }
+}

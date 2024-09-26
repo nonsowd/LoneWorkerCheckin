@@ -23,3 +23,10 @@ public class LocationController : ControllerBase
         return Ok(response);
     }
 }
+
+public class LocationResponse
+{
+    public Guid LocationId { get; set; }
+    public string LocationName { get; set; } = string.Empty;
+}
+

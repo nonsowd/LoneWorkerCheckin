@@ -11,7 +11,6 @@ public class SiteController : ControllerBase
     {
         _dbContext = dbContext;
     }
-    
 
     [HttpGet(Name = "GetSiteInformation")]
     public async Task<ActionResult<List<SiteResponse>>> GetSitesByRegionAsync(Guid regionId)
@@ -25,3 +24,10 @@ public class SiteController : ControllerBase
         // TODO: implement the APi for sites 
     }
 }
+
+public class SiteResponse
+{
+    public Guid SiteId { get; set; }
+    public string SiteName { get; set; } = string.Empty;
+}
+

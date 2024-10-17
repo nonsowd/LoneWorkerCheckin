@@ -1,4 +1,6 @@
-using Azure;
+using LoneWorkerCheckin.Infrastructure.EntityFramework;
+using LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LoneWorkerCheckin.Api.Controllers;
 
@@ -6,44 +8,49 @@ namespace LoneWorkerCheckin.Api.Controllers;
 [Route("[controller]")]
 public class CheckinController : ControllerBase
 {
-    [HttpPost(Name = "PostCheckin")]
-    public async Task<ActionResult> PostCheckinAsync (CheckinRequest checkin)
+    private readonly ApplicationDbContext _dbContext;
+
+    public CheckinController(ApplicationDbContext dbContext)
     {
-        // persist posted informtion into sql server
-        // return a status code
-        return CreatedAtRoute("GetCheckinById", new { checkinId = Guid.NewGuid() });
+        _dbContext = dbContext;
+    }
+
+    [HttpPost(Name = "PostCheckin")]
+    public async Task<ActionResult> PostCheckinAsync(CheckinRequest checkin, CancellationToken cancellationToken)
+    {
+        //TODO: Add validation
+
+        var checkinEntity = new CheckinEntity()
+        {
+            SiteId = checkin.SiteId,
+            UserId = checkin.UserId,
+            LocationId = checkin.LocationId,
+            TimeStamp = DateTime.UtcNow,
+        };
+        await _dbContext.Checkins.AddAsync(checkinEntity, cancellationToken);
+        await _dbContext.SaveChangesAsync();
+
+        return CreatedAtRoute("GetCheckinById", new { checkinId = checkinEntity.CheckinId });
     }
 
     [HttpGet(Name = "GetCheckinById")]
     public async Task<ActionResult<CheckinResponse>> GetCheckinByIdAsync(Guid checkinId)
     {
-        //if (_fakeDatabase.ContainsKey(checkinId) == false)
+        var data = await _dbContext.Checkins.SingleOrDefaultAsync(s => s.CheckinId == checkinId);
+        if (data == null)
         {
             return NotFound();
         }
 
-        //var response = _fakeDatabase[email];
-        //return Ok(response);
-
+        var response = new CheckinResponse()
+        {
+            SiteId = data.SiteId,
+            UserId = data.UserId,
+            LocationId = data.LocationId,
+            TimeStamp = DateTime.UtcNow,
+        };
+        return Ok(response);
     }
 
-}
-
-public class CheckinResponse 
-{
-    public Guid CheckinId { get; set; }
-    public Guid UserId { get; set; }
-    public Guid SiteId { get; set; }
-    public Guid LocationId { get; set; }
-    public string GridReference { get; set; }
-    public DateTime TimeStamp { get; set; }    
-}
-
-public class CheckinRequest
-{
-    public Guid UserId { get; set; }
-    public Guid SiteId { get; set; }
-    public Guid LocationId { get; set; }
-    public string GridReference { get; set; }
 }
 

@@ -1,4 +1,5 @@
 using LoneWorkerCheckin.Api.Client;
+using LoneWorkerCheckin.Blazor.Services;
 
 namespace LoneWorkerCheckin.Blazor.ViewModels;
 
@@ -23,9 +24,12 @@ public class StartTaskComponentViewModel
     public bool ShowLoading { get; set; } = false;
     public string SelectedRegion { get; set; }
 
+    public event Action OnStateHasChanged = default!;
 
 
-    public async void OnSelectedRegionChanged(string rawSelectedRegionId)
+
+
+    public async void SelectedRegionChanged(string rawSelectedRegionId)
     {
         if (Guid.TryParse(rawSelectedRegionId, out var newSelectedRegionId) == false)
         {
@@ -34,26 +38,45 @@ public class StartTaskComponentViewModel
 
         var response = await _loneWorkerCheckinApiClient.GetSitesByRegionAsync(newSelectedRegionId);
 
-        SiteList = response.Select(dataItem
+        if (response.IsSuccessStatusCode == false)
+        {
+            SiteList = new List<SiteViewModel>();
+            RaiseStateHasChangedEvent();
+            return;
+        }
+
+        SiteList = response.Content.Select(dataItem
             => new SiteViewModel()
             {
                 SiteId = dataItem.SiteId.ToString(),
                 SiteName = dataItem.SiteName
             })
             .ToList();
+
+        RaiseStateHasChangedEvent();
     }
 
-    public async Task OnInitializedAsync() 
+    public async Task InitializedAsync() 
     {
         await GetRegion();
 
         await GetLocations();
+
+        RaiseStateHasChangedEvent();
     }
 
     private async Task GetRegion()
     {
         var response = await _loneWorkerCheckinApiClient.GetRegionListAsync();
-        RegionList = response.Select(dataItem
+
+        if (response.IsSuccessStatusCode == false)
+        {
+            RegionList = new List<RegionViewModel>();
+            RaiseStateHasChangedEvent();
+            return;
+        }
+
+        RegionList = response.Content.Select(dataItem
             => new RegionViewModel()
             {
                 RegionId = dataItem.RegionId.ToString(),
@@ -65,12 +88,28 @@ public class StartTaskComponentViewModel
     private async Task GetLocations()
     {
         var response = await _loneWorkerCheckinApiClient.GetLocationListsAsync();
-        LocationList = response.Select(dataItem
+
+        if (response.IsSuccessStatusCode == false)
+        {
+            LocationList = new List<LocationViewModel>();
+            RaiseStateHasChangedEvent();
+            return;
+        }
+
+        LocationList = response.Content.Select(dataItem
             => new LocationViewModel()
             {
                 LocationId = dataItem.LocationId.ToString(),
                 LocationName = dataItem.LocationName
             })
             .ToList();
+    }
+
+    private void RaiseStateHasChangedEvent()
+    {
+        if (OnStateHasChanged == null)
+            return;
+
+        OnStateHasChanged();
     }
 }

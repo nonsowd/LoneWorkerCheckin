@@ -1,7 +1,6 @@
 @using LoneWorkerCheckin.Blazor.Services
 @using LoneWorkerCheckin.Blazor.ViewModels
 @inject StartTaskComponentViewModel _viewModel;
-@* @inject IJSRuntime JS; *@
 @inject IGeoLocationBroker geoLocation;
 
 
@@ -14,7 +13,7 @@
                 <MudStack Row="true" Justify="Justify.SpaceBetween">
                     <MudText class="mb-2" Typo="Typo.h6">Region</MudText>
 
-                    <MudSelect T="string" Variant="Variant.Filled" ValueChanged="_viewModel.OnSelectedRegionChanged">
+                    <MudSelect T="string" Variant="Variant.Filled" ValueChanged="_viewModel.SelectedRegionChanged">
                         @if (_viewModel.RegionList != null)
                         {
                             @foreach (var item in _viewModel.RegionList)
@@ -87,14 +86,18 @@
 {
     protected override async Task OnInitializedAsync()
     {
-        await _viewModel.OnInitializedAsync();
+        _viewModel.OnStateHasChanged += () =>
+        {
+            this.StateHasChanged();
+        };
+        await _viewModel.InitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         geoLocation.OnGeolocationPositionError += OnGeolocationPositionError;
         geoLocation.OnCoordinatesChanged += OnCoordinatesChanaged;
-        await geoLocation.RequestGeoLocationAsync();
+        //await geoLocation.RequestGeoLocationAsync();
 
         await base.OnAfterRenderAsync(firstRender);
     }

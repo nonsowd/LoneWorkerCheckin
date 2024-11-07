@@ -17,11 +17,11 @@ public class SiteController : ControllerBase
     {
         var data = _dbContext.Sites.Where(s => s.RegionId == regionId).ToList();
 
+        if (data.Count == 0)
+           return NotFound();
+       
         var response = data.Select(dataItem => new SiteResponse() { SiteId = dataItem.RegionId, SiteName = dataItem.SiteName }).ToList();
-
         return Ok(response);
-
-        // TODO: implement the APi for sites 
     }
 }
 

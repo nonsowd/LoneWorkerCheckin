@@ -33,7 +33,7 @@
                 <MudStack Row="true" Justify="Justify.SpaceBetween">
                     <MudText class="mb-2" Typo="Typo.h6">Site</MudText>
 
-                    <MudSelect T="string" Variant="Variant.Filled">
+                    <MudSelect T="string" @bind-Value ="_viewModel.SelectedSite" Variant="Variant.Filled">
                         @if (_viewModel.SiteList != null)
                         {
                             @foreach (var item in _viewModel.SiteList)
@@ -54,7 +54,7 @@
                 <MudStack Row="true" Justify="Justify.SpaceBetween">
                     <MudText class="mb-2" Typo="Typo.h6">Location</MudText>
 
-                    <MudSelect T="string" Variant="Variant.Filled">
+                    <MudSelect T="string" @bind-Value="_viewModel.SelectedLocation" Variant="Variant.Filled">
                         @if (_viewModel.LocationList != null)
                         {
                             @foreach (var item in _viewModel.LocationList)
@@ -98,6 +98,8 @@
         geoLocation.OnGeolocationPositionError += OnGeolocationPositionError;
         geoLocation.OnCoordinatesChanged += OnCoordinatesChanaged;
         //await geoLocation.RequestGeoLocationAsync();
+
+        // TODO: Move code to viewModel
 
         await base.OnAfterRenderAsync(firstRender);
     }

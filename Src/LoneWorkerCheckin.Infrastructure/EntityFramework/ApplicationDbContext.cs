@@ -22,6 +22,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<RegionEntity> Regions { get; set; } = null!;
     public DbSet<SiteEntity> Sites { get; set; } = null!;
     public DbSet<LocationEntity> Locations { get; set; } = null!;
+    public DbSet<CheckinEntity> Checkins { get; set; } = null!;
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,6 +34,8 @@ public class ApplicationDbContext : DbContext
         OnModelSiteCreating(modelBuilder, regionSeedData);
 
         OnModelLocationCreating(modelBuilder);
+
+        OnModelCheckinCreating(modelBuilder);
 
     }
 
@@ -80,6 +83,26 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<LocationEntity>().HasData(locationSeedData);
     }
 
+    private void OnModelCheckinCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<CheckinEntity>().ToTable("Checkins");
+        modelBuilder.Entity<CheckinEntity>().HasKey(x => x.CheckinId);
+
+        // TODO: MAP foreign keys for; UserId, SiteId, LocationId
+
+        // modelBuilder.Entity<SiteEntity>().HasOne(r => r.Region).WithMany().OnDelete(DeleteBehavior.NoAction).HasForeignKey(x => x.RegionId);
+
+        modelBuilder.Entity<CheckinEntity>().Property(x => x.Latitude)
+            .IsRequired();
+        modelBuilder.Entity<CheckinEntity>().Property(x => x.Longitude)
+            .IsRequired();
+        modelBuilder.Entity<CheckinEntity>().Property(x => x.TimeStamp)
+            .IsRequired();
+
+        modelBuilder.Entity<SiteEntity>().HasIndex(x => x.SiteName).IsUnique();
+
+    }
+
     private List<RegionEntity> GetRegionSeedData()
         => new List<RegionEntity>()
         {
@@ -113,4 +136,6 @@ public class ApplicationDbContext : DbContext
             new LocationEntity() { LocationId = Guid.NewGuid(), LocationName = "Dinning room" },
             new LocationEntity() { LocationId = Guid.NewGuid(), LocationName = "Reception" }
         };
+
+
 }

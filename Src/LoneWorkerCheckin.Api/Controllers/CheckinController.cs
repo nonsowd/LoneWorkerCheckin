@@ -44,6 +44,7 @@ public class CheckinController : ControllerBase
 
         var response = new CheckinResponse()
         {
+            CheckinId = data.CheckinId,
             SiteId = data.SiteId,
             UserId = data.UserId,
             LocationId = data.LocationId,

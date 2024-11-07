@@ -1,32 +1,30 @@
 using LoneWorkerCheckin.Api.Client;
-using LoneWorkerCheckin.Blazor.Services;
 
 namespace LoneWorkerCheckin.Blazor.ViewModels;
 
 public class StartTaskComponentViewModel
 {
     private readonly ILoneWorkerCheckinApiClient _loneWorkerCheckinApiClient;
-   
 
     public StartTaskComponentViewModel(ILoneWorkerCheckinApiClient loneWorkerCheckinApiClient)
-    {
-        _loneWorkerCheckinApiClient = loneWorkerCheckinApiClient;
-        
-    }
+        => _loneWorkerCheckinApiClient = loneWorkerCheckinApiClient;
 
     public List<RegionViewModel>? RegionList { get; set; }
+    public string SelectedRegion { get; set; }
+
     public List<SiteViewModel>? SiteList { get; set; }
+    public string SelectedSite { get; set; }
+
     public List<LocationViewModel>? LocationList { get; set; }
+    public string SelectedLocation { get; set; }
+
 
     public string TaskDescription { get; set; }
     public string GPSLocation { get; set; }
 
     public bool ShowLoading { get; set; } = false;
-    public string SelectedRegion { get; set; }
-
+    
     public event Action OnStateHasChanged = default!;
-
-
 
 
     public async void SelectedRegionChanged(string rawSelectedRegionId)
@@ -37,10 +35,11 @@ public class StartTaskComponentViewModel
         }
 
         var response = await _loneWorkerCheckinApiClient.GetSitesByRegionAsync(newSelectedRegionId);
-
+        // TODO: refactor duplicate code
         if (response.IsSuccessStatusCode == false)
         {
             SiteList = new List<SiteViewModel>();
+            SelectedSite = string.Empty;
             RaiseStateHasChangedEvent();
             return;
         }
@@ -53,6 +52,7 @@ public class StartTaskComponentViewModel
             })
             .ToList();
 
+        SelectedSite = string.Empty;
         RaiseStateHasChangedEvent();
     }
 

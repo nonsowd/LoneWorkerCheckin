@@ -1,4 +1,4 @@
-using FluentAssertions;
+using Shouldly;
 using LoneWorkerCheckin.Domain;
 
 namespace LoneWorkerCheckin.Test.Domain;
@@ -18,8 +18,8 @@ public class GeoLocation_Ctor
         var sut = new GeoLocation(gridReference);
 
         // Assert
-        sut.Latitude.Should().Be(expectedLatitude);
-        sut.Longitude.Should().Be(expectedLongitude);
+        sut.Latitude.ShouldBe(expectedLatitude);
+        sut.Longitude.ShouldBe(expectedLongitude);
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public class GeoLocation_Ctor
         var sut = () => new GeoLocation(gridReference);
 
         // Assert
-        sut.Should().Throw<ArgumentException>();
+        sut.ShouldThrow<ArgumentException>();
     }
 
     [Theory]
@@ -62,9 +62,9 @@ public class GeoLocation_Ctor
         var result = sut.Invoke();
 
         // Assert
-        sut.Should().NotThrow();
-        result.Latitude.Should().NotBeNull();
-        result.Longitude.Should().NotBeNull();
+        sut.ShouldNotThrow();
+        result.Latitude.ShouldNotBeNull();
+        result.Longitude.ShouldNotBeNull();
     }
 }
 
@@ -100,10 +100,10 @@ public class GeoLocation_ToString
         var result = geolocation.ToString();
 
         // Assert
-        sut.Should().NotThrow();
-        geolocation.Latitude.Should().NotBeNull();
-        geolocation.Longitude.Should().NotBeNull();
-        result.Should().Be(expectedOutPut);
+        sut.ShouldNotThrow();
+        geolocation.Latitude.ShouldNotBeNull();
+        geolocation.Longitude.ShouldNotBeNull();
+        result.ShouldBe(expectedOutPut);
     }
 
 }

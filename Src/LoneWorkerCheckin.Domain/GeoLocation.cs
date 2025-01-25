@@ -43,18 +43,14 @@ public record GeoLocation
             var lat = double.Parse(rawstringLat);
             var lng = double.Parse(rawstringLng);
 
-            this.Latitude = new Latitude((long)lat);
-            this.Longitude = new Longitude((long)lng);
-
-
+            Latitude = new Latitude(lat);
+            Longitude = new Longitude(lng);
         }
         catch (IndexOutOfRangeException ex)
         {
-
             throw new ArgumentException("No comma", nameof(gridReference), ex);
         }
     }
-}
 
-public record Latitude (long Value);
-public record Longitude (long Value);
+    public override string ToString() => $"{Latitude},{Longitude}";
+}

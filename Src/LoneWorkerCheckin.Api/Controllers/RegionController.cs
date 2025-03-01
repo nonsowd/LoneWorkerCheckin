@@ -4,7 +4,7 @@ namespace LoneWorkerCheckin.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class RegionController : ControllerBase
+public sealed class RegionController : ControllerBase
 {
     private readonly ApplicationDbContext _dbContext;
 
@@ -21,10 +21,3 @@ public class RegionController : ControllerBase
         return Ok(response);
     }        
 }
-
-public class RegionResponse
-{
-    public Guid RegionId { get; set; }
-    public string RegionName { get; set; } = string.Empty;
-}
-

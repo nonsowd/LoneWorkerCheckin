@@ -1,10 +1,12 @@
+using System.ComponentModel.DataAnnotations;
 using LoneWorkerCheckin.Infrastructure.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 
 namespace LoneWorkerCheckin.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class SiteController : ControllerBase
+public sealed class SiteController : ControllerBase
 {
     private readonly ApplicationDbContext _dbContext;
     public SiteController(ApplicationDbContext dbContext)
@@ -13,9 +15,9 @@ public class SiteController : ControllerBase
     }
 
     [HttpGet(Name = "GetSiteInformation")]
-    public async Task<ActionResult<List<SiteResponse>>> GetSitesByRegionAsync(Guid regionId)
+    public async Task<ActionResult<List<SiteResponse>>> GetSitesByRegionAsync([Required] Guid regionId)
     {
-        var data = _dbContext.Sites.Where(s => s.RegionId == regionId).ToList();
+        var data = await _dbContext.Sites.Where(s => s.RegionId == regionId).ToListAsync();
 
         if (data.Count == 0)
            return NotFound();
@@ -24,10 +26,3 @@ public class SiteController : ControllerBase
         return Ok(response);
     }
 }
-
-public class SiteResponse
-{
-    public Guid SiteId { get; set; }
-    public string SiteName { get; set; } = string.Empty;
-}
-

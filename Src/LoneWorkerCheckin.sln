@@ -32,6 +32,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoneWorkerCheckin.Test", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoneWorkerCheckin.Blazor", "LoneWorkerCheckin.Blazor\LoneWorkerCheckin.Blazor.csproj", "{5104BF5F-4182-4AC9-9F1C-531CDECA0990}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignDocs", "DesignDocs", "{75F6DA6D-E814-476C-B3E3-C572765E0F91}"
+	ProjectSection(SolutionItems) = preProject
+		DesignDocs\ApiDesign.md = DesignDocs\ApiDesign.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetyAudit.Api", "SafetyAudit.Api\SafetyAudit.Api.csproj", "{DB8C809A-178D-4012-95E8-F81E13DBD5EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.Domain", "SafetySystems.Domain\SafetySystems.Domain.csproj", "{AE10A034-D305-4E38-B928-B42AE650E08E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.Test", "SafetySystems.Test\SafetySystems.Test.csproj", "{467609B2-973D-4FD4-8454-F15295B53CFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.SafetyAudit.Application", "SafetySystems.SafetyAudit.Application\SafetySystems.SafetyAudit.Application.csproj", "{00FE5665-B685-4C7F-802D-0A10A887DE23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +106,30 @@ Global
 		{5104BF5F-4182-4AC9-9F1C-531CDECA0990}.Design|Any CPU.Build.0 = Design|Any CPU
 		{5104BF5F-4182-4AC9-9F1C-531CDECA0990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5104BF5F-4182-4AC9-9F1C-531CDECA0990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8C809A-178D-4012-95E8-F81E13DBD5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8C809A-178D-4012-95E8-F81E13DBD5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8C809A-178D-4012-95E8-F81E13DBD5EB}.Design|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8C809A-178D-4012-95E8-F81E13DBD5EB}.Design|Any CPU.Build.0 = Debug|Any CPU
+		{DB8C809A-178D-4012-95E8-F81E13DBD5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8C809A-178D-4012-95E8-F81E13DBD5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE10A034-D305-4E38-B928-B42AE650E08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE10A034-D305-4E38-B928-B42AE650E08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE10A034-D305-4E38-B928-B42AE650E08E}.Design|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE10A034-D305-4E38-B928-B42AE650E08E}.Design|Any CPU.Build.0 = Debug|Any CPU
+		{AE10A034-D305-4E38-B928-B42AE650E08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE10A034-D305-4E38-B928-B42AE650E08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467609B2-973D-4FD4-8454-F15295B53CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467609B2-973D-4FD4-8454-F15295B53CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467609B2-973D-4FD4-8454-F15295B53CFC}.Design|Any CPU.ActiveCfg = Debug|Any CPU
+		{467609B2-973D-4FD4-8454-F15295B53CFC}.Design|Any CPU.Build.0 = Debug|Any CPU
+		{467609B2-973D-4FD4-8454-F15295B53CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467609B2-973D-4FD4-8454-F15295B53CFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00FE5665-B685-4C7F-802D-0A10A887DE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FE5665-B685-4C7F-802D-0A10A887DE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FE5665-B685-4C7F-802D-0A10A887DE23}.Design|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FE5665-B685-4C7F-802D-0A10A887DE23}.Design|Any CPU.Build.0 = Debug|Any CPU
+		{00FE5665-B685-4C7F-802D-0A10A887DE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FE5665-B685-4C7F-802D-0A10A887DE23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

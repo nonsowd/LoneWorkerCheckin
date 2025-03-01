@@ -10,4 +10,6 @@ var loneworkercheckinserviceapi = builder.AddProject<Projects.LoneWorkerCheckin_
 builder.AddProject<Projects.LoneWorkerCheckin_Blazor>("loneworkercheckin-blazor")
     .WithReference(loneworkercheckinserviceapi).WaitFor(loneworkercheckinserviceapi);
 
+builder.AddProject<Projects.SafetyAudit_Api>("safetyaudit-api");
+
 builder.Build().Run();

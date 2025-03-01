@@ -2,7 +2,7 @@ namespace LoneWorkerCheckin.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase    
+public sealed class UserController : ControllerBase    
 {
     
     private static readonly Dictionary<string, UserResponse> _fakeDatabase = new(StringComparer.CurrentCultureIgnoreCase)
@@ -21,11 +21,5 @@ public class UserController : ControllerBase
 
         var response = _fakeDatabase[email];
         return Ok(response);
-
     }
-}
-
-public class UserResponse
-{
-    public Guid UserId { get; set; }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using LoneWorkerCheckin.Infrastructure.EntityFramework;
 using LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,7 @@ namespace LoneWorkerCheckin.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class CheckinController : ControllerBase
+public sealed class CheckinController : ControllerBase
 {
     private readonly ApplicationDbContext _dbContext;
 
@@ -34,7 +35,7 @@ public class CheckinController : ControllerBase
     }
 
     [HttpGet(Name = "GetCheckinById")]
-    public async Task<ActionResult<CheckinResponse>> GetCheckinByIdAsync(Guid checkinId)
+    public async Task<ActionResult<CheckinResponse>> GetCheckinByIdAsync([Required] Guid checkinId)
     {
         var data = await _dbContext.Checkins.SingleOrDefaultAsync(s => s.CheckinId == checkinId);
         if (data == null)
@@ -52,6 +53,4 @@ public class CheckinController : ControllerBase
         };
         return Ok(response);
     }
-
 }
-

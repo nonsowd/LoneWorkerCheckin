@@ -1,11 +1,10 @@
 using LoneWorkerCheckin.Infrastructure.EntityFramework;
-using Microsoft.AspNetCore.Authorization;
 
 namespace LoneWorkerCheckin.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class LocationController : ControllerBase
+public sealed class LocationController : ControllerBase
 {
     private readonly ApplicationDbContext _dbContext;
 
@@ -23,10 +22,3 @@ public class LocationController : ControllerBase
         return Ok(response);
     }
 }
-
-public class LocationResponse
-{
-    public Guid LocationId { get; set; }
-    public string LocationName { get; set; } = string.Empty;
-}
-

@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoneWorkerCheckin.Api.Client\LoneWorkerCheckin.Api.Client.csproj" />
-    <ProjectReference Include="..\LoneWorkerCheckin.Api\LoneWorkerCheckin.Api.csproj" />
-    <ProjectReference Include="..\LoneWorkerCheckin.ServiceDefaults\LoneWorkerCheckin.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Api.Client\SafetySystems.LoneWorkerCheckin.Api.Client.csproj" />
+    <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Api\SafetySystems.LoneWorkerCheckin.Api.csproj" />
+    <ProjectReference Include="..\..\Common\SafetySystems.Common.ServiceDefaults\SafetySystems.Common.ServiceDefaults.csproj" />
   </ItemGroup>
 </Project>

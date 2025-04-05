@@ -4,6 +4,6 @@
     <PackageReference Include="Refit.HttpClientFactory" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoneWorkerCheckin.Api\LoneWorkerCheckin.Api.csproj" />
+    <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Api\SafetySystems.LoneWorkerCheckin.Api.csproj" />
   </ItemGroup>
 </Project>

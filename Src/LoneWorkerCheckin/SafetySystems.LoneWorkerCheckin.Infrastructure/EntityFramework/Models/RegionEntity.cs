@@ -1,4 +1,4 @@
-namespace LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
+namespace SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
 
 public sealed class RegionEntity
 {

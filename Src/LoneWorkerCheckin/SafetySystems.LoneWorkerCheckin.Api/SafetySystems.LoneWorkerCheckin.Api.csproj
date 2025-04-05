@@ -9,8 +9,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\LoneWorkerCheckin.Infrastructure\LoneWorkerCheckin.Infrastructure.csproj" />
-        <ProjectReference Include="..\LoneWorkerCheckin.ServiceDefaults\LoneWorkerCheckin.ServiceDefaults.csproj" />
+        <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Infrastructure\SafetySystems.LoneWorkerCheckin.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Common\SafetySystems.Common.ServiceDefaults\SafetySystems.Common.ServiceDefaults.csproj" />
     </ItemGroup>
 
 </Project>

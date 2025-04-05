@@ -1,4 +1,4 @@
-namespace LoneWorkerCheckin.Domain;
+namespace SafetySystems.LoneWorkerCheckin.Domain;
 
 public record Longitude (double Value)
 {

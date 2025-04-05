@@ -1,7 +1,7 @@
-using LoneWorkerCheckin.Api.Controllers;
+using SafetySystems.LoneWorkerCheckin.Api.Controllers;
 using Refit;
 
-namespace LoneWorkerCheckin.Api.Client;
+namespace SafetySystems.LoneWorkerCheckin.Api.Client;
 
 public interface ILoneWorkerCheckinApiClient
 {

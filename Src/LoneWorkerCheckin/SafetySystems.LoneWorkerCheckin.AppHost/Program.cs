@@ -4,12 +4,10 @@ var db = builder.AddSqlServer("loneworkercheckin-sqlserver")
     .WithLifetime(ContainerLifetime.Persistent)
     .AddDatabase("loneworkercheckin-db", "loneworkercheckin");
 
-var loneworkercheckinserviceapi = builder.AddProject<Projects.LoneWorkerCheckin_Api>("loneworkercheckin-api")
+var loneworkercheckinserviceapi = builder.AddProject<Projects.SafetySystems_LoneWorkerCheckin_Api>("loneworkercheckin-api")
     .WithReference(db).WaitFor(db);
 
-builder.AddProject<Projects.LoneWorkerCheckin_Blazor>("loneworkercheckin-blazor")
+builder.AddProject<Projects.SafetySystems_LoneWorkerCheckin_Blazor>("loneworkercheckin-blazor")
     .WithReference(loneworkercheckinserviceapi).WaitFor(loneworkercheckinserviceapi);
-
-builder.AddProject<Projects.SafetyAudit_Api>("safetyaudit-api");
 
 builder.Build().Run();

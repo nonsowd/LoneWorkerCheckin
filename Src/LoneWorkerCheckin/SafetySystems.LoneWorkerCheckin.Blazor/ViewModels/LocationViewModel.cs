@@ -1,4 +1,4 @@
-namespace LoneWorkerCheckin.Blazor.ViewModels;
+namespace SafetySystems.LoneWorkerCheckin.Blazor.ViewModels;
 
 public sealed class LocationViewModel
 {

@@ -1,4 +1,4 @@
-﻿namespace LoneWorkerCheckin.Api.Controllers;
+namespace SafetySystems.LoneWorkerCheckin.Api.Controllers;
 
 public sealed class UserResponse
 {

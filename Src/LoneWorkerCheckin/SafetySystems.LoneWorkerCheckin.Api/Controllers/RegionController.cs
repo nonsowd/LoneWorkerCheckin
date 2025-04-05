@@ -1,6 +1,6 @@
-using LoneWorkerCheckin.Infrastructure.EntityFramework;
+using SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework;
 
-namespace LoneWorkerCheckin.Api.Controllers;
+namespace SafetySystems.LoneWorkerCheckin.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

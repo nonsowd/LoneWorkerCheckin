@@ -1,4 +1,4 @@
-using LoneWorkerCheckin.Infrastructure.EntityFramework;
+using SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
 

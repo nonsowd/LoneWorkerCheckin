@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using LoneWorkerCheckin.Infrastructure.EntityFramework;
-using LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
+using SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework;
+using SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LoneWorkerCheckin.Api.Controllers;
+namespace SafetySystems.LoneWorkerCheckin.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

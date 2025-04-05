@@ -1,9 +1,9 @@
-using LoneWorkerCheckin.Domain;
-using LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
+using SafetySystems.LoneWorkerCheckin.Domain;
+using SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace LoneWorkerCheckin.Infrastructure.EntityFramework;
+namespace SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework;
 
 public class ApplicationDbContext : DbContext
 {

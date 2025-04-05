@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
 
-namespace LoneWorkerCheckin.Blazor.Services;
+namespace SafetySystems.LoneWorkerCheckin.Blazor.Services;
 
 public struct Coordinate
 {

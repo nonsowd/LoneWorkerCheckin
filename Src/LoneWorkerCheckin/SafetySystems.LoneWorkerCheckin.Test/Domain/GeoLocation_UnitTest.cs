@@ -1,7 +1,7 @@
 using Shouldly;
-using LoneWorkerCheckin.Domain;
+using SafetySystems.LoneWorkerCheckin.Domain;
 
-namespace LoneWorkerCheckin.Test.Domain;
+namespace SafetySystems.LoneWorkerCheckin.Test.Domain;
 
 public class GeoLocation_Ctor
 {

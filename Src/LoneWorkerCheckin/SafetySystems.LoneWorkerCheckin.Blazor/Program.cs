@@ -5,11 +5,11 @@
 
 
 using MudBlazor.Services;
-using LoneWorkerCheckin.Blazor.Components;
-using LoneWorkerCheckin.Api.Client;
+using SafetySystems.LoneWorkerCheckin.Blazor.Components;
+using SafetySystems.LoneWorkerCheckin.Api.Client;
 using Refit;
-using LoneWorkerCheckin.Blazor.ViewModels;
-using LoneWorkerCheckin.Blazor.Services;
+using SafetySystems.LoneWorkerCheckin.Blazor.ViewModels;
+using SafetySystems.LoneWorkerCheckin.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

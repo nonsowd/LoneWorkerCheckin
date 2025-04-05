@@ -1,6 +1,6 @@
-using LoneWorkerCheckin.Api.Client;
+using SafetySystems.LoneWorkerCheckin.Api.Client;
 
-namespace LoneWorkerCheckin.Blazor.ViewModels;
+namespace SafetySystems.LoneWorkerCheckin.Blazor.ViewModels;
 
 public class StartTaskComponentViewModel
 {

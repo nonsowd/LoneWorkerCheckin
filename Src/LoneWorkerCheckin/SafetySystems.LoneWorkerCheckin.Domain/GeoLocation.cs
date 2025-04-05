@@ -1,4 +1,4 @@
-namespace LoneWorkerCheckin.Domain;
+namespace SafetySystems.LoneWorkerCheckin.Domain;
 
 /*
  TQ306799

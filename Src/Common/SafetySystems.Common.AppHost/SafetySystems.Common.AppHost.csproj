@@ -14,8 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Api\SafetySystems.LoneWorkerCheckin.Api.csproj" />
-    <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Blazor\SafetySystems.LoneWorkerCheckin.Blazor.csproj" />
+    <ProjectReference Include="..\..\LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Api\SafetySystems.LoneWorkerCheckin.Api.csproj" />
+    <ProjectReference Include="..\..\LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Blazor\SafetySystems.LoneWorkerCheckin.Blazor.csproj" />
+    <ProjectReference Include="..\..\SafetyAudit\SafetySystems.SafetyAudit.Api\SafetySystems.SafetyAudit.Api.csproj" />
+    <ProjectReference Include="..\..\SafetyAudit\SafetySystems.SafetyAudit.Blazor\SafetySystems.SafetyAudit.Blazor.csproj" />
   </ItemGroup>
 
 </Project>

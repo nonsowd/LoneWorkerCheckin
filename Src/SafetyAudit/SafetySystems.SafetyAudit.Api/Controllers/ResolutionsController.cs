@@ -8,7 +8,7 @@ namespace SafetyAudit.Api.Controllers;
 public sealed class ResolutionsController : ControllerBase
 {
     [HttpPost(Name = "Resolutions")]
-    public ActionResult PostResolutions(ResolutionsRequest resolutionsReport)
+    public ActionResult PostResolutions(ResolutionsRequest resolutionsRequest)
     {
         var id = Guid.NewGuid();
         return CreatedAtRoute("GetResolutionsById", new { resolutionsId = id });
@@ -26,7 +26,7 @@ public sealed class ResolutionsRequest
 {
     public Guid SiteInspectionReportId { get; set; }
     public DateTime DateOfResolutions { get; set; }
-    public Guid IssueId { get; set; }
+    public Guid RiskFindingId { get; set; }
     [Required]
     public string ResolutionDetails { get; set; } = string.Empty;
     public Guid ResolutionStatusId { get; set; }
@@ -37,7 +37,7 @@ public sealed class ResolutionsResponse
     public Guid ResolutionsId { get; set; }
     public Guid SiteInspectionReportId { get; set; }
     public DateTime DateOfResolutions { get; set; }
-    public Guid IssueId { get; set; }
+    public Guid RiskFindingId { get; set; }
     [Required]
     public string ResolutionDetails { get; set; } = string.Empty;
     public Guid ResolutionStatusId { get; set; }

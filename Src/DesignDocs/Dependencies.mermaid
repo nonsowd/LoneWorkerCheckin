@@ -1,0 +1,64 @@
+flowchart TD
+    subgraph "Common"
+        CommonTests@{ shape: rounded, label: "SafetySystems.Common.Test"}
+        CommonDomain@{ shape: rounded, label: "SafetySystems.Common.Domain"}
+        CommonServiceDefaults@{ shape: rounded, label: "SafetySystems.Common.ServiceDefaults"}
+    end
+
+    subgraph "Lone Worker Checkin"
+        LoneWorkerClient@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.Api.Client"}
+        LoneWorkerApi@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.Api"}
+        LoneWorkerInfra@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.Infrastructure"}
+        LoneWorkerAppHost@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.AppHost"}
+        LoneWorkerBlazor@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.Blazor"}
+        LoneWorkerDomain@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.Domain"}
+        LoneWorkerTest@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.Test"}
+        LoneWorkerUseCase@{ shape: rounded, label: "SafetySystems.LoneWorkerCheckin.UseCase"}
+    end
+
+    subgraph "Safety Audit"
+        SafetyAuditClient@{ shape: rounded, label: "SafetySystems.SafetyAudit.Api.Client"}
+        SafetyAuditApi@{ shape: rounded, label: "SafetySystems.SafetyAudit.Api"}
+        SafetyAuditInfra@{ shape: rounded, label: "SafetySystems.SafetyAudit.Infrastructure"}
+        SafetyAuditAppHost@{ shape: rounded, label: "SafetySystems.SafetyAudit.AppHost"}
+        SafetyAuditBlazor@{ shape: rounded, label: "SafetySystems.SafetyAudit.Blazor"}
+        SafetyAuditDomain@{ shape: rounded, label: "SafetySystems.SafetyAudit.Domain"}
+        SafetyAuditTest@{ shape: rounded, label: "SafetySystems.SafetyAudit.Test"}
+        SafetyAuditUseCase@{ shape: rounded, label: "SafetySystems.SafetyAudit.UseCase"}
+    end
+
+    CommonTests --> CommonServiceDefaults
+    CommonTests --> CommonDomain
+%%----------------------------------------------
+    LoneWorkerClient --> LoneWorkerApi
+
+    LoneWorkerApi --> LoneWorkerInfra
+    LoneWorkerApi --> CommonServiceDefaults
+    LoneWorkerApi --> LoneWorkerUseCase
+
+    LoneWorkerAppHost --> LoneWorkerApi
+    LoneWorkerAppHost --> LoneWorkerBlazor
+
+    LoneWorkerBlazor --> LoneWorkerClient
+    LoneWorkerBlazor --> LoneWorkerApi
+    LoneWorkerBlazor --> CommonServiceDefaults
+
+    LoneWorkerInfra --> LoneWorkerDomain
+    LoneWorkerTest --> LoneWorkerDomain
+%%----------------------------------------------
+
+    SafetyAuditClient --> SafetyAuditApi
+
+    SafetyAuditApi --> SafetyAuditInfra
+    SafetyAuditApi --> CommonServiceDefaults
+    SafetyAuditApi --> SafetyAuditUseCase
+
+    SafetyAuditAppHost --> SafetyAuditApi
+    SafetyAuditAppHost --> SafetyAuditBlazor
+
+    SafetyAuditBlazor --> SafetyAuditClient
+    SafetyAuditBlazor --> SafetyAuditApi
+    SafetyAuditBlazor --> CommonServiceDefaults
+
+    SafetyAuditInfra --> SafetyAuditDomain
+    SafetyAuditTest --> SafetyAuditDomain

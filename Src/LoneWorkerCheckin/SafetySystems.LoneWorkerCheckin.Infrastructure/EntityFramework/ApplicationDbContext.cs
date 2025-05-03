@@ -1,6 +1,9 @@
 using SafetySystems.LoneWorkerCheckin.Domain;
 using SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
+using System.Reflection.Emit;
+using System.Xml.Serialization;
 
 
 namespace SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework;
@@ -10,6 +13,35 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions options)
         : base(options)
     {
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+
+        optionsBuilder.UseAsyncSeeding(async (context, _, cancellationToken) =>
+        {
+            // Region seed data ...
+            var regionSeedData = GetRegionSeedData();
+            if(context.Set<RegionEntity>().Any() == false)
+            {
+                await context.Set<RegionEntity>().AddRangeAsync(regionSeedData);
+            }
+
+            // Site seed data ...
+            var siteSeedData = GetSiteSeedData(regionSeedData);
+            if (context.Set<SiteEntity>().Any() == false)
+            {
+                await context.Set<SiteEntity>().AddRangeAsync(siteSeedData);
+            }
+          
+            // Location seed data ...
+            var locationSeedData = GetLocationSeedData();
+            if (context.Set<LocationEntity>().Any() == false)
+            {
+                await context.Set<LocationEntity>().AddRangeAsync(locationSeedData);
+            }
+            context.SaveChanges();
+        });
     }
 
     public string ConnectionString => Database.GetDbConnection().ConnectionString;
@@ -27,19 +59,13 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var regionSeedData = GetRegionSeedData();
-
-        OnModelRegionCreating(modelBuilder, regionSeedData);
-
-        OnModelSiteCreating(modelBuilder, regionSeedData);
-
+        OnModelRegionCreating(modelBuilder);
+        OnModelSiteCreating(modelBuilder);
         OnModelLocationCreating(modelBuilder);
-
         OnModelCheckinCreating(modelBuilder);
-
     }
 
-    private void OnModelRegionCreating(ModelBuilder modelBuilder, List<RegionEntity> regionSeedData)
+    private void OnModelRegionCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<RegionEntity>().ToTable("Regions");
         modelBuilder.Entity<RegionEntity>().HasKey(x => x.RegionId);
@@ -48,12 +74,9 @@ public class ApplicationDbContext : DbContext
             .IsRequired().IsUnicode().HasMaxLength(RegionEntity.RegionNameMaxLenght);
 
         modelBuilder.Entity<RegionEntity>().HasIndex(x => x.RegionName).IsUnique();
-
-        modelBuilder.Entity<RegionEntity>().HasData(regionSeedData);
-
     }
 
-    private void OnModelSiteCreating(ModelBuilder modelBuilder, List<RegionEntity> regionSeedData)
+    private void OnModelSiteCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SiteEntity>().ToTable("Sites");
         modelBuilder.Entity<SiteEntity>().HasKey(x => x.SiteId);
@@ -64,9 +87,6 @@ public class ApplicationDbContext : DbContext
             .IsRequired().IsUnicode().HasMaxLength(SiteEntity.SiteNameMaxLenght);
 
         modelBuilder.Entity<SiteEntity>().HasIndex(x => x.SiteName).IsUnique();
-
-        var siteSeedData = GetSiteSeedData(regionSeedData);
-        modelBuilder.Entity<SiteEntity>().HasData(siteSeedData);
     }
 
     private void OnModelLocationCreating(ModelBuilder modelBuilder)
@@ -78,9 +98,6 @@ public class ApplicationDbContext : DbContext
             .IsRequired().IsUnicode().HasMaxLength(LocationEntity.LocationNameMaxLenght);
 
         modelBuilder.Entity<LocationEntity>().HasIndex(x => x.LocationName).IsUnique();
-
-        var locationSeedData = GetLocationSeedData();
-        modelBuilder.Entity<LocationEntity>().HasData(locationSeedData);
     }
 
     private void OnModelCheckinCreating(ModelBuilder modelBuilder)
@@ -100,7 +117,6 @@ public class ApplicationDbContext : DbContext
             .IsRequired();
 
         modelBuilder.Entity<SiteEntity>().HasIndex(x => x.SiteName).IsUnique();
-
     }
 
     private List<RegionEntity> GetRegionSeedData()

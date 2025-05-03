@@ -122,7 +122,8 @@ SiteInspectionReport -- Auditor : Audited By (auditorId)
 {
     "auditorId": "{095274BA-BA90-463B-9A0B-8022A5C41754}",
     "firstName": "Bob",
-    "lastName": "Blogs",
+    "lastName": "Blogs"
+
 }
 ```
 

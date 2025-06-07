@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.Common.AppHos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.SafetyAudit.Blazor", "SafetyAudit\SafetySystems.SafetyAudit.Blazor\SafetySystems.SafetyAudit.Blazor.csproj", "{4373CFBB-3C02-42FF-BA04-CF47C3979673}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.Common.EFDataMigrationService", "Common\SafetySystems.Common.EFDataMigrationService\SafetySystems.Common.EFDataMigrationService.csproj", "{551B92C5-4E56-45B3-84D0-C5D26824C22C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{4373CFBB-3C02-42FF-BA04-CF47C3979673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4373CFBB-3C02-42FF-BA04-CF47C3979673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4373CFBB-3C02-42FF-BA04-CF47C3979673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{551B92C5-4E56-45B3-84D0-C5D26824C22C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551B92C5-4E56-45B3-84D0-C5D26824C22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551B92C5-4E56-45B3-84D0-C5D26824C22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551B92C5-4E56-45B3-84D0-C5D26824C22C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,6 +140,7 @@ Global
 		{80BFF194-8B7D-477A-9323-A8F8B333D1C7} = {FEBD249B-0E1E-4872-AAAD-B58D93F52339}
 		{01E90947-CC62-48EA-85C2-A01532540A84} = {3116D3AA-83C3-4770-B287-ECF35506610D}
 		{4373CFBB-3C02-42FF-BA04-CF47C3979673} = {3CA25601-9AB9-4C65-A143-D3EE01E95114}
+		{551B92C5-4E56-45B3-84D0-C5D26824C22C} = {3116D3AA-83C3-4770-B287-ECF35506610D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6FD88C84-59B1-4321-9947-24BFE685EFD1}

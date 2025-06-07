@@ -2,6 +2,10 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+var keycloak = builder.AddKeycloak("keycloak", 8080)
+    .WithDataVolume("keycloak-data")
+    .WithLifetime(ContainerLifetime.Persistent);
+
 var loneworkersqldb = builder.AddSqlServer("loneworkercheckin-sqlserver")
     //.WithLifetime(ContainerLifetime.Persistent)
     .AddDatabase("loneworkercheckin-db", "loneworkercheckin");
@@ -22,5 +26,9 @@ var safetyauditapi = builder.AddProject<Projects.SafetySystems_SafetyAudit_Api>(
 
 builder.AddProject<Projects.SafetySystems_SafetyAudit_Blazor>("safetyaudit-blazor")
     .WithReference(safetyauditapi).WaitFor(safetyauditapi);
+
+builder.AddProject<Projects.SafetySystems_Common_EFDataMigrationService>("safetysystems-efdatamigrationservice")
+    .WithReference(loneworkersqldb).WaitFor(loneworkersqldb)
+    .WithReference(safetyauditpostgresdb).WaitFor(safetyauditpostgresdb);
 
 builder.Build().Run();

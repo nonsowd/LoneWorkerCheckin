@@ -390,3 +390,10 @@ FodyWeavers.xsd
 *.sln.iml
 /Src/DevNotes.md
 /Src/image_2024_08_01T19_09_43_059Z.png
+Src/Common/SafetySystems.Common.AppHost/aspire-manifest/manifest.json
+Src/.idea/.idea.SafetySystems/.idea/.gitignore
+Src/.idea/.idea.SafetySystems/.idea/.name
+Src/.idea/.idea.SafetySystems/.idea/AndroidProjectSystem.xml
+Src/.idea/.idea.SafetySystems/.idea/encodings.xml
+Src/.idea/.idea.SafetySystems/.idea/indexLayout.xml
+Src/.idea/.idea.SafetySystems/.idea/vcs.xml

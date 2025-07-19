@@ -55,6 +55,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.SafetyAudit.B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.Common.EFDataMigrationService", "Common\SafetySystems.Common.EFDataMigrationService\SafetySystems.Common.EFDataMigrationService.csproj", "{551B92C5-4E56-45B3-84D0-C5D26824C22C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafetySystems.SafetyAudit.Test", "SafetyAudit\SafetySystems.SafetyAudit.Test\SafetySystems.SafetyAudit.Test.csproj", "{7E0828DB-0377-4890-8EA1-8163338F2764}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HandArmVibrationCalculator", "HandArmVibrationCalculator", "{CF8123FD-3E61-4628-97C3-12F63F54D097}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandArmVibrationCalculator.Avalonia", "HandArmVibrationCalculator\HandArmVibrationCalculator.Avalonia\HandArmVibrationCalculator.Avalonia.csproj", "{E863FDD1-0A65-4976-A543-63C5FF1146AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +127,14 @@ Global
 		{551B92C5-4E56-45B3-84D0-C5D26824C22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{551B92C5-4E56-45B3-84D0-C5D26824C22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{551B92C5-4E56-45B3-84D0-C5D26824C22C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E0828DB-0377-4890-8EA1-8163338F2764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0828DB-0377-4890-8EA1-8163338F2764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0828DB-0377-4890-8EA1-8163338F2764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0828DB-0377-4890-8EA1-8163338F2764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E863FDD1-0A65-4976-A543-63C5FF1146AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E863FDD1-0A65-4976-A543-63C5FF1146AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E863FDD1-0A65-4976-A543-63C5FF1146AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E863FDD1-0A65-4976-A543-63C5FF1146AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +155,8 @@ Global
 		{01E90947-CC62-48EA-85C2-A01532540A84} = {3116D3AA-83C3-4770-B287-ECF35506610D}
 		{4373CFBB-3C02-42FF-BA04-CF47C3979673} = {3CA25601-9AB9-4C65-A143-D3EE01E95114}
 		{551B92C5-4E56-45B3-84D0-C5D26824C22C} = {3116D3AA-83C3-4770-B287-ECF35506610D}
+		{7E0828DB-0377-4890-8EA1-8163338F2764} = {3CA25601-9AB9-4C65-A143-D3EE01E95114}
+		{E863FDD1-0A65-4976-A543-63C5FF1146AF} = {CF8123FD-3E61-4628-97C3-12F63F54D097}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6FD88C84-59B1-4321-9947-24BFE685EFD1}

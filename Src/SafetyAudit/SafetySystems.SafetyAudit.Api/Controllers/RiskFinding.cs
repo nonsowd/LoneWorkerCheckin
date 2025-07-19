@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using SafetyAudit.Api.Controllers;
 using System.ComponentModel.DataAnnotations;
 
 namespace SafetySystems.SafetyAudit.Api.Controllers;
@@ -16,6 +15,7 @@ public sealed class RiskFindingController : ControllerBase
     public ActionResult PostRiskFinding(RiskFindingRequest riskFindingRequest)
     {
         var id = Guid.NewGuid();
+        //throw new NotImplementedException();
         return CreatedAtRoute("GetRiskFindingById", new { riskFindingId = id });
     }
 
@@ -29,11 +29,11 @@ public sealed class RiskFindingController : ControllerBase
 
 public sealed class RiskFindingRequest
 {
-  
+
 }
 
 public sealed class RiskFindingResponse
 {
     public Guid RiskFindingId { get; set; }
- 
+
 }

@@ -14,7 +14,7 @@ public class ApplicationDbContext : DbContext
         : base(options)
     {
     }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
 
@@ -33,7 +33,7 @@ public class ApplicationDbContext : DbContext
             {
                 await context.Set<SiteEntity>().AddRangeAsync(siteSeedData);
             }
-          
+
             // Location seed data ...
             var locationSeedData = GetLocationSeedData();
             if (context.Set<LocationEntity>().Any() == false)
@@ -42,7 +42,7 @@ public class ApplicationDbContext : DbContext
             }
             context.SaveChanges();
         });
-    }
+    }*/
 
     public string ConnectionString => Database.GetDbConnection().ConnectionString;
 

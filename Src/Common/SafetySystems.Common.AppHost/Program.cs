@@ -6,10 +6,12 @@ var keycloak = builder.AddKeycloak("keycloak", 8080)
     .WithDataVolume("keycloak-data")
     .WithLifetime(ContainerLifetime.Persistent);
 
+// TODO: Switch to Postgres Efcore
 var loneworkersqldb = builder.AddSqlServer("loneworkercheckin-sqlserver")
     //.WithLifetime(ContainerLifetime.Persistent)
     .AddDatabase("loneworkercheckin-db", "loneworkercheckin");
 
+// TODO: Switch to Sql + Dapper
 var safetyauditpostgresdb = builder.AddPostgres("safetyaudit-postgres")
     //.WithLifetime(ContainerLifetime.Persistent)
     .WithPgAdmin()

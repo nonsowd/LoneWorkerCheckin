@@ -1,14 +1,13 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using SafetySystems.SafetyAudit.Domain.Validation;
+using SafetySystems.SafetyAudit.Domain.SafetyInspection.Validation;
 
-namespace SafetySystems.SafetyAudit.Domain
+namespace SafetySystems.SafetyAudit.Domain;
+
+public static class DependencyInjectionExtensions
 {
-    public static class DependencyInjectionExtensions
+    public static void AddSafetySystemsDomain(this IServiceCollection services)
     {
-        public static void AddSafetySystemsDomain(this IServiceCollection services)
-        {
-            services.AddTransient<IValidator<RiskFinding>, RiskFindingValidator>();
-        }
+        services.AddTransient<IValidator<RiskFinding>, RiskFindingValidator>();
     }
 }

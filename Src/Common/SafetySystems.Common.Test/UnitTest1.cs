@@ -1,4 +1,4 @@
-namespace SafetySystems.Test
+namespace SafetySystems.Common.Test
 {
     public class UnitTest1
     {

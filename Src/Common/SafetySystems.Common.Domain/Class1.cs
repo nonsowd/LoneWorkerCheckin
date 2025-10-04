@@ -1,4 +1,4 @@
-﻿namespace SafetySystems.Domain
+﻿namespace SafetySystems.Common.Domain
 {
     public class Class1
     {

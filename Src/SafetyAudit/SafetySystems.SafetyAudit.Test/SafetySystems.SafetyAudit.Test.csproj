@@ -24,4 +24,11 @@
       <ProjectReference Include="..\SafetySystems.SafetyAudit.Api\SafetySystems.SafetyAudit.Api.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Application\Remediation\" />
+      <Folder Include="Application\SafetyInspection\" />
+      <Folder Include="Domain\Remediation\" />
+      <Folder Include="Domain\SafetyInspection\" />
+    </ItemGroup>
+
 </Project>

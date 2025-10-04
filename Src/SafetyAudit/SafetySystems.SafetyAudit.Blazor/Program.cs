@@ -1,4 +1,5 @@
 using MudBlazor.Services;
+using SafetySystems.Common.ServiceDefaults;
 using SafetySystems.SafetyAudit.Blazor.Components;
 
 var builder = WebApplication.CreateBuilder(args);

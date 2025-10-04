@@ -1,3 +1,4 @@
+using SafetySystems.Common.ServiceDefaults;
 using SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);

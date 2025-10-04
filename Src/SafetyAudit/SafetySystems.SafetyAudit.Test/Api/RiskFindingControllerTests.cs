@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using SafetySystems.SafetyAudit.Api.Controllers;
 using Shouldly;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
 using Moq;
+using SafetySystems.SafetyAudit.Api.SafetyInspection;
 using SafetySystems.SafetyAudit.Domain;
 using SafetySystems.SafetyAudit.Infrastructure.DAL;
 
@@ -23,11 +23,9 @@ public class RiskFindingControllerTests
         _mockValidator.Setup(x => x.Validate(It.IsAny<RiskFinding>()))
             .Returns(new ValidationResult());
 
-        //TODO: Fake database ID assignment and verify it's being returned.
-        //TODO: Do a commit next week.
-
+        var databaseRiskFindingId = Guid.NewGuid();
         _mockRepository.Setup(x => x.SaveRiskFinding(It.IsAny<RiskFinding>()))
-            .Returns(new RiskFinding());
+            .Returns(new RiskFinding { RiskFindingId = databaseRiskFindingId });
 
         var sut = new RiskFindingController(_mockValidator.Object, _mockRepository.Object, _mockLogger.Object);
         var request = new RiskFindingRequest();
@@ -42,7 +40,11 @@ public class RiskFindingControllerTests
 
         // Assert
         response.ShouldNotBeNull();
-        response.ShouldBeOfType<CreatedAtRouteResult>();
+        response.ShouldBeOfType<ActionResult<Guid>>();
+        response.Result.ShouldBeOfType<CreatedAtRouteResult>();
+        response.Value.ShouldBeEquivalentTo(Guid.Empty);
+        var result = (CreatedAtRouteResult)response.Result;
+        result.Value.ShouldBeEquivalentTo(databaseRiskFindingId);
         _mockRepository.Verify(x=>x.SaveRiskFinding(It.IsAny<RiskFinding>()), Times.Once);
     }
 
@@ -64,7 +66,9 @@ public class RiskFindingControllerTests
 
         // Assert
         response.ShouldNotBeNull();
-        response.ShouldBeOfType<BadRequestObjectResult>();
+        response.ShouldBeOfType<ActionResult<Guid>>();
+        response.Result.ShouldBeOfType<BadRequestObjectResult>();
+        response.Value.ShouldBeEquivalentTo(Guid.Empty) ;
         _mockRepository.Verify(x=>x.SaveRiskFinding(It.IsAny<RiskFinding>()), Times.Never);
     }
 }

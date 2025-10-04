@@ -48,7 +48,7 @@ public class ApplicationDbContext : DbContext
 
     public async Task EnsureDatabaseIsSetupAsync()
     {
-        await Database.MigrateAsync();
+   //     await Database.MigrateAsync();
     }
 
     public DbSet<RegionEntity> Regions { get; set; } = null!;

@@ -8,6 +8,7 @@ using MudBlazor.Services;
 using SafetySystems.LoneWorkerCheckin.Blazor.Components;
 using SafetySystems.LoneWorkerCheckin.Api.Client;
 using Refit;
+using SafetySystems.Common.ServiceDefaults;
 using SafetySystems.LoneWorkerCheckin.Blazor.ViewModels;
 using SafetySystems.LoneWorkerCheckin.Blazor.Services;
 

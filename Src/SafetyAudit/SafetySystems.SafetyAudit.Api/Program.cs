@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SafetySystems.Common.ServiceDefaults;
 using SafetySystems.SafetyAudit.Domain;
 using SafetySystems.SafetyAudit.Infrastructure;
 

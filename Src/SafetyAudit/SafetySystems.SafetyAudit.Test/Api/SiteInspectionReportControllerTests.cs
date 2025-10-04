@@ -1,4 +1,4 @@
-﻿using SafetyAudit.Api.Controllers;
+﻿using SafetySystems.SafetyAudit.Api.SafetyInspection;
 using Shouldly;
 
 namespace SafetySystems.SafetyAudit.Test.Api;

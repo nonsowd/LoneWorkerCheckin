@@ -2,6 +2,7 @@ namespace SafetySystems.SafetyAudit.Domain;
 
 public sealed class RiskFinding
 {
+    public Guid RiskFindingId { get; init; }
     public Guid SiteId { get; set; }
     public Guid AuditorId { get; set; }
     public Guid SpecificIssueRiskId { get; set; }

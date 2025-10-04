@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SafetyAudit.Api.Controllers;
+namespace SafetySystems.SafetyAudit.Api.SafetyInspection;
 
 [ApiController]
 [Route("[controller]")]

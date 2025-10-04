@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using SafetySystems.SafetyAudit.Domain;
 using SafetySystems.SafetyAudit.Infrastructure.DAL;
 
-namespace SafetySystems.SafetyAudit.Api.Controllers;
+namespace SafetySystems.SafetyAudit.Api.SafetyInspection;
 
 [ApiController]
 [Route("[controller]")]
@@ -27,12 +27,10 @@ public sealed class RiskFindingController : ControllerBase
     [EndpointDescription("Persists a valid RiskFinding request to the data store.")]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RiskFindingResponse))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
-    public ActionResult PostRiskFinding(RiskFindingRequest riskFindingRequest)
+    public ActionResult<Guid> PostRiskFinding(RiskFindingRequest riskFindingRequest)
     {
 
         _logger.LogInformation("Post riskfinding site id: {request.SiteId}", riskFindingRequest.SiteId);
-
-        //Todo: Add response attributes
 
         var riskFinding = new RiskFinding
         {
@@ -47,11 +45,15 @@ public sealed class RiskFindingController : ControllerBase
 
         var validationResult = _validator.Validate(riskFinding);
         if (!validationResult.IsValid)
-            return BadRequest(validationResult.Errors);
+        {
+            validationResult.Errors.ToList().ForEach((err) => ModelState.AddModelError(err.PropertyName, err.ErrorMessage));
+            return BadRequest(ModelState);
+        }
+
 
         var savedRiskFinding = _repository.SaveRiskFinding(riskFinding);
+        return CreatedAtRoute("GetRiskFindingById", new { riskFindingId = savedRiskFinding.RiskFindingId }, savedRiskFinding.RiskFindingId);
 
-        return CreatedAtRoute("GetRiskFindingById", new { riskFindingId = Guid.NewGuid() });
     }
 
     [HttpGet(Name = "GetRiskFindingById")]

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace SafetySystems.SafetyAudit.Domain.Validation;
+namespace SafetySystems.SafetyAudit.Domain.SafetyInspection.Validation;
 
 //TODO : Change class to internal and dependency injection
 public sealed class RiskFindingValidator: AbstractValidator<RiskFinding>

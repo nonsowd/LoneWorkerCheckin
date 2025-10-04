@@ -1,4 +1,4 @@
-using SafetyAudit.Api.Controllers;
+using SafetySystems.SafetyAudit.Api.Remediation;
 using Shouldly;
 
 namespace SafetySystems.SafetyAudit.Test.Api;

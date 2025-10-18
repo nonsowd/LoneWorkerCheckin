@@ -1,6 +1,13 @@
+using SafetySystems.SafetyAudit.Domain;
+
 namespace SafetySystems.SafetyAudit.Application.SafetyInspection;
 
-public class ReportRiskFindingCommand
+public sealed class ReportRiskFindingCommand
 {
+    public ReportRiskFindingCommand(RiskFinding riskFinding)
+    {
+        RiskFinding = riskFinding;
+    }
 
+    public RiskFinding RiskFinding { get; }
 }

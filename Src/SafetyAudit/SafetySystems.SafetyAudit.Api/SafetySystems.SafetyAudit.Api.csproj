@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\SafetySystems.Common.ServiceDefaults\SafetySystems.Common.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\SafetySystems.SafetyAudit.Application\SafetySystems.SafetyAudit.Application.csproj" />
     <ProjectReference Include="..\SafetySystems.SafetyAudit.Domain\SafetySystems.SafetyAudit.Domain.csproj" />
     <ProjectReference Include="..\SafetySystems.SafetyAudit.Infrastructure\SafetySystems.SafetyAudit.Infrastructure.csproj" />
   </ItemGroup>

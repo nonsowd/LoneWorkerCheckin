@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using SafetySystems.SafetyAudit.Application.SafetyInspection;
 using SafetySystems.SafetyAudit.Domain;
 using SafetySystems.SafetyAudit.Infrastructure.DAL;
 
@@ -10,17 +11,15 @@ namespace SafetySystems.SafetyAudit.Api.SafetyInspection;
 [Route("[controller]")]
 public sealed class RiskFindingController : ControllerBase
 {
-    private readonly IRiskFindingRepository _repository;
-    private readonly IValidator<RiskFinding> _validator;
     private readonly ILogger<RiskFindingController> _logger;
+    private readonly IReportRiskFindingCommandHandler _commandHandler;
+
     public RiskFindingController (
-        IValidator<RiskFinding> validator,
-        IRiskFindingRepository repository,
-        ILogger<RiskFindingController> logger)
+        ILogger<RiskFindingController> logger,
+        IReportRiskFindingCommandHandler commandHandler)
     {
-        _validator = validator;
-        _repository = repository;
         _logger = logger;
+        _commandHandler = commandHandler;
     }
 
     [HttpPost(Name = "RiskFinding")]
@@ -29,31 +28,19 @@ public sealed class RiskFindingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     public ActionResult<Guid> PostRiskFinding(RiskFindingRequest riskFindingRequest)
     {
-
         _logger.LogInformation("Post riskfinding site id: {request.SiteId}", riskFindingRequest.SiteId);
 
-        var riskFinding = new RiskFinding
-        {
-            SiteId = riskFindingRequest.SiteId,
-            AuditorId = riskFindingRequest.AuditorId,
-            SpecificIssueRiskId = riskFindingRequest.SpecificIssueRiskId,
-            RiskCodeId = riskFindingRequest.RiskCodeId,
-            IssuesStatus = riskFindingRequest.IssuesStatus,
-            DateOfInspection = riskFindingRequest.DateOfInspection,
-            RiskDescription = riskFindingRequest.RiskDescription,
-        };
+        var command = new ReportRiskFindingCommand(riskFindingRequest.ToRiskFinding());
+        var commmandResult = _commandHandler.Handle(command);
 
-        var validationResult = _validator.Validate(riskFinding);
-        if (!validationResult.IsValid)
+        if (!commmandResult.IsSuccess)
         {
-            validationResult.Errors.ToList().ForEach((err) => ModelState.AddModelError(err.PropertyName, err.ErrorMessage));
+            commmandResult.ValidationErrors.ToList().ForEach((err) => ModelState.AddModelError(err.Identifier, err.ErrorMessage));
             return BadRequest(ModelState);
         }
 
-
-        var savedRiskFinding = _repository.SaveRiskFinding(riskFinding);
+        var savedRiskFinding = commmandResult.Value;
         return CreatedAtRoute("GetRiskFindingById", new { riskFindingId = savedRiskFinding.RiskFindingId }, savedRiskFinding.RiskFindingId);
-
     }
 
     [HttpGet(Name = "GetRiskFindingById")]
@@ -83,4 +70,21 @@ public sealed class RiskFindingResponse
 {
     public Guid RiskFindingId { get; set; }
 
+}
+
+public static class RiskFindingMapper
+{
+    public static RiskFinding ToRiskFinding(this RiskFindingRequest request)
+    {
+        return new RiskFinding
+        {
+            SiteId = request.SiteId,
+            AuditorId = request.AuditorId,
+            SpecificIssueRiskId = request.SpecificIssueRiskId,
+            RiskCodeId = request.RiskCodeId,
+            IssuesStatus = request.IssuesStatus,
+            DateOfInspection = request.DateOfInspection,
+            RiskDescription = request.RiskDescription,
+        };
+    }
 }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SafetySystems.Common.ServiceDefaults;
+using SafetySystems.SafetyAudit.Application;
 using SafetySystems.SafetyAudit.Domain;
 using SafetySystems.SafetyAudit.Infrastructure;
 
@@ -26,6 +27,7 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddSafetySystemsDomain();
         builder.Services.AddSafetySystemsInfrastructure();
+        builder.Services.AddSafetySystemsApplication();
 
         var app = builder.Build();
         app.MapDefaultEndpoints();

@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SafetySystems.SafetyAudit.Domain\SafetySystems.SafetyAudit.Domain.csproj" />
+      <PackageReference Include="FluentValidation" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     </ItemGroup>
 

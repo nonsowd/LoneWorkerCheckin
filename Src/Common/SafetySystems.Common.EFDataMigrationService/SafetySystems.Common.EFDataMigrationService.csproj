@@ -1,9 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
-
-    <PropertyGroup>
-        <UserSecretsId>dotnet-SafetySystems.Common.EFDataMigrationService-31425e8f-cae2-46d9-a9ad-c919076ccccb</UserSecretsId>
-    </PropertyGroup>
-
     <ItemGroup>
         <PackageReference Include="FluentValidation" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" />

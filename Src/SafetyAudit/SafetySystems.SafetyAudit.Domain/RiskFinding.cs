@@ -10,4 +10,15 @@ public sealed class RiskFinding
     public IssuesStatusEnum IssuesStatus { get; set; } = IssuesStatusEnum.Open;
     public DateTime DateOfInspection { get; set; }
     public string RiskDescription { get; set; } = string.Empty;
+
+    public RiskLevelEnum RiskLevel { get; set; } = RiskLevelEnum.Unknown;
 }
+
+public enum RiskLevelEnum
+{
+    Unknown = 0,
+    Low = 1,
+    Medium = 2,
+    High = 3
+}
+

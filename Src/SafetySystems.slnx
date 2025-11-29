@@ -1,0 +1,43 @@
+<Solution>
+  <Folder Name="/Common/">
+    <Project Path="Common/SafetySystems.Common.AppHost/SafetySystems.Common.AppHost.csproj" />
+    <Project Path="Common/SafetySystems.Common.Domain/SafetySystems.Common.Domain.csproj" />
+    <Project Path="Common/SafetySystems.Common.EFDataMigrationService/SafetySystems.Common.EFDataMigrationService.csproj" />
+    <Project Path="Common/SafetySystems.Common.ServiceDefaults/SafetySystems.Common.ServiceDefaults.csproj" />
+    <Project Path="Common/SafetySystems.Common.Test/SafetySystems.Common.Test.csproj" />
+  </Folder>
+  <Folder Name="/DesignDocs/">
+    <File Path="DesignDocs/ApiDesign.md" />
+  </Folder>
+  <Folder Name="/HandArmVibrationCalculator/">
+    <Project Path="HandArmVibrationCalculator/HandArmVibrationCalculator.Avalonia/HandArmVibrationCalculator.Avalonia.csproj" />
+  </Folder>
+  <Folder Name="/HttpScripts/" />
+  <Folder Name="/LoneWorkerCheckin/">
+    <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Api.Client/SafetySystems.LoneWorkerCheckin.Api.Client.csproj" />
+    <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Api/SafetySystems.LoneWorkerCheckin.Api.csproj" />
+    <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Blazor/SafetySystems.LoneWorkerCheckin.Blazor.csproj" />
+    <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.DBMigrationServices/SafetySystems.LoneWorkerCheckin.DBMigrationServices.csproj" />
+    <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Domain/SafetySystems.LoneWorkerCheckin.Domain.csproj" />
+    <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Infrastructure/SafetySystems.LoneWorkerCheckin.Infrastructure.csproj" />
+    <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Test/SafetySystems.LoneWorkerCheckin.Test.csproj" />
+    <Project Path="LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Application\SafetySystems.LoneWorkerCheckin.Application.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/SafetyAudit/">
+    <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Api/SafetySystems.SafetyAudit.Api.csproj" />
+    <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Application/SafetySystems.SafetyAudit.Application.csproj" />
+    <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Blazor/SafetySystems.SafetyAudit.Blazor.csproj" />
+    <Project Path="SafetyAudit/SafetySystems.SafetyAudit.DBMigrationServices/SafetySystems.SafetyAudit.DBMigrationServices.csproj" />
+    <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Domain/SafetySystems.SafetyAudit.Domain.csproj" />
+    <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Infrastructure/SafetySystems.SafetyAudit.Infrastructure.csproj" />
+    <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Test/SafetySystems.SafetyAudit.Test.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+      <File Path=".editorconfig"/>
+      <File Path="DevNotes.md"/>
+      <File Path="Directory.Build.props"/>
+      <File Path="Directory.Packages.props"/>
+      <File Path="LoneWorkerCheckin.code-workspace"/>
+      <File Path="../.gitignore"/>
+  </Folder>
+</Solution>

@@ -1,11 +1,12 @@
 <Project>
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Product>Lone Worker Check-in Tool</Product>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally><!--See: https://devblogs.microsoft.com/nuget/introducing-central-package-management/-->
         <NoWarn>$(NoWarn);</NoWarn><!--https://github.com/dotnet/aspnetcore/issues/50836-->
+        <UserSecretsId>f226c6a5-6325-4d06-a480-f887280a9c3c</UserSecretsId>
     </PropertyGroup>
 </Project>

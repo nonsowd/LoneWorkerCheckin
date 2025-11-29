@@ -397,3 +397,6 @@ Src/.idea/.idea.SafetySystems/.idea/AndroidProjectSystem.xml
 Src/.idea/.idea.SafetySystems/.idea/encodings.xml
 Src/.idea/.idea.SafetySystems/.idea/indexLayout.xml
 Src/.idea/.idea.SafetySystems/.idea/vcs.xml
+
+# Mac
+.DS_Store

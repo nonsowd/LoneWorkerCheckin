@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path="..\.github\workflows\dotnet.yml" />
+    <File Path="..\.github\workflows\pullrequest.yml" />
+  </Folder>
   <Folder Name="/Common/">
     <Project Path="Common/SafetySystems.Common.AppHost/SafetySystems.Common.AppHost.csproj" />
     <Project Path="Common/SafetySystems.Common.Domain/SafetySystems.Common.Domain.csproj" />
@@ -21,7 +26,7 @@
     <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Domain/SafetySystems.LoneWorkerCheckin.Domain.csproj" />
     <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Infrastructure/SafetySystems.LoneWorkerCheckin.Infrastructure.csproj" />
     <Project Path="LoneWorkerCheckin/SafetySystems.LoneWorkerCheckin.Test/SafetySystems.LoneWorkerCheckin.Test.csproj" />
-    <Project Path="LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Application\SafetySystems.LoneWorkerCheckin.Application.csproj" Type="Classic C#" />
+    <Project Path="LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Application\SafetySystems.LoneWorkerCheckin.Application.csproj" />
   </Folder>
   <Folder Name="/SafetyAudit/">
     <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Api/SafetySystems.SafetyAudit.Api.csproj" />
@@ -33,11 +38,11 @@
     <Project Path="SafetyAudit/SafetySystems.SafetyAudit.Test/SafetySystems.SafetyAudit.Test.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
-      <File Path=".editorconfig"/>
-      <File Path="DevNotes.md"/>
-      <File Path="Directory.Build.props"/>
-      <File Path="Directory.Packages.props"/>
-      <File Path="LoneWorkerCheckin.code-workspace"/>
-      <File Path="../.gitignore"/>
+      <File Path=".editorconfig" />
+      <File Path="DevNotes.md" />
+      <File Path="Directory.Build.props" />
+      <File Path="Directory.Packages.props" />
+      <File Path="LoneWorkerCheckin.code-workspace" />
+      <File Path="../.gitignore" />
   </Folder>
 </Solution>

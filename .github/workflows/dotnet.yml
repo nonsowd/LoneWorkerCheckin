@@ -22,10 +22,10 @@ jobs:
         pwd
        
     - name: Restore dependencies
-      run: dotnet restore ./src/SafetySystems.slnx
+      run: dotnet restore ./Src/SafetySystems.slnx
       
     - name: Build
-      run: dotnet build ./src/SafetySystems.slnx --no-restore
+      run: dotnet build ./Src/SafetySystems.slnx --no-restore
       
     - name: Test
-      run: dotnet test ./src/SafetySystems.slnx --no-build --verbosity normal
+      run: dotnet test ./Src/SafetySystems.slnx --no-build --verbosity normal

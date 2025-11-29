@@ -9,18 +9,24 @@ POST https://{{host}}:{{port}}/Checkin
 Content-Type: application/json
 
 {
-  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "areaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "userId": "cdcf639b-04a0-4e23-a9bf-95211453d6ec",
+  "siteId": "7736d6df-d93d-42c8-82c3-639bfd7b326f",
+  "locationId": "6d55a9ed-e128-4366-97d0-eddcb6fa7c58",
   "gridReference": "string"
 }
+
+### Get Location
+
+GET https://{{host}}:{{port}}/Location
 
 ### Get Region
 
 GET https://{{host}}:{{port}}/Region
 
 ### Get Site
+@southeastRegionId = 7736d6df-d93d-42c8-82c3-639bfd7b326f
+GET https://{{host}}:{{port}}/Site?regionId={{southeastRegionId}}
 
-GET https://{{host}}:{{port}}/Site
 
 ### Get User by email
 
@@ -35,3 +41,4 @@ GET https://{{host}}:{{port}}/User?email={{unknownEmailAddress}}
 GET https://{{host}}:{{port}}/User?email={{knownEmailAddress}}
 
 ###
+

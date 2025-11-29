@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <InternalsVisibleTo Include="SafetySystems.SafetyAudit.Test" />
+    </ItemGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Ardalis.Result.FluentValidation" />
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Remediation\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SafetySystems.SafetyAudit.Infrastructure\SafetySystems.SafetyAudit.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

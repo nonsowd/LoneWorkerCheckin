@@ -1,0 +1,18 @@
+erDiagram
+    AuditReport ||--o{ RiskFinding : ""
+    RiskFinding ||--o{ Resolution : ""
+
+    AuditReport {
+        Guid AuditReportID
+        Date AuditDate
+    }
+
+    RiskFinding {
+        Guid RiskFindingID
+        Guid AuditReportID
+    }
+
+    Resolution {
+        Guid ResolutionID
+    }
+

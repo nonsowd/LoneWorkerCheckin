@@ -1,0 +1,32 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsAspireHost>true</IsAspireHost>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting.AppHost" />
+        <PackageReference Include="Aspire.Hosting.Keycloak"/>
+        <PackageReference Include="Aspire.Hosting.PostgreSQL"/>
+        <PackageReference Include="Aspire.Hosting.SqlServer"/>
+        <PackageReference Include="FluentValidation"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Hosting"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Api\SafetySystems.LoneWorkerCheckin.Api.csproj"/>
+        <ProjectReference Include="..\..\LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Blazor\SafetySystems.LoneWorkerCheckin.Blazor.csproj"/>
+        <ProjectReference Include="..\..\LoneWorkerCheckin\SafetySystems.LoneWorkerCheckin.Infrastructure\SafetySystems.LoneWorkerCheckin.Infrastructure.csproj">
+            <IsAspireProjectResource>false</IsAspireProjectResource>
+        </ProjectReference>
+        <ProjectReference Include="..\..\SafetyAudit\SafetySystems.SafetyAudit.Api\SafetySystems.SafetyAudit.Api.csproj"/>
+        <ProjectReference Include="..\..\SafetyAudit\SafetySystems.SafetyAudit.Blazor\SafetySystems.SafetyAudit.Blazor.csproj"/>
+        <ProjectReference Include="..\SafetySystems.Common.EFDataMigrationService\SafetySystems.Common.EFDataMigrationService.csproj"/>
+    </ItemGroup>
+
+</Project>

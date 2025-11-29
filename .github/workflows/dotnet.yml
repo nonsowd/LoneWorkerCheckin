@@ -1,0 +1,31 @@
+name: .NET
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.100
+        
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Log Current Directory
+      run: |
+        echo "Current Directory:"
+        pwd
+       
+    - name: Restore dependencies
+      run: dotnet restore ./src/SafetySystems.slnx
+      
+    - name: Build
+      run: dotnet build ./src/SafetySystems.slnx --no-restore
+      
+    - name: Test
+      run: dotnet test ./src/SafetySystems.slnx --no-build --verbosity normal

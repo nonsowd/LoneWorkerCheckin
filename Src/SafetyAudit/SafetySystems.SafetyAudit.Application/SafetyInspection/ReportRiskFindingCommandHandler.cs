@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using SafetySystems.SafetyAudit.Domain;
@@ -16,6 +17,7 @@ internal sealed class ReportRiskFindingCommandHandler : IReportRiskFindingComman
 {
     private readonly IRiskFindingRepository _repository;
     private readonly IValidator<RiskFinding> _validator;
+    [SuppressMessage("Critical Code Smell", "S4487:Unread \"private\" fields should be removed")]
     private readonly ILogger<ReportRiskFindingCommandHandler> _logger;
 
     public ReportRiskFindingCommandHandler (

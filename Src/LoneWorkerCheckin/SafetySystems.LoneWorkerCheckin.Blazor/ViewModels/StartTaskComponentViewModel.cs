@@ -10,20 +10,20 @@ public class StartTaskComponentViewModel
         => _loneWorkerCheckinApiClient = loneWorkerCheckinApiClient;
 
     public List<RegionViewModel>? RegionList { get; set; }
-    public string SelectedRegion { get; set; }
+    public string SelectedRegion { get; set; } = string.Empty;
 
     public List<SiteViewModel>? SiteList { get; set; }
-    public string SelectedSite { get; set; }
+    public string SelectedSite { get; set; } = string.Empty;
 
     public List<LocationViewModel>? LocationList { get; set; }
-    public string SelectedLocation { get; set; }
+    public string SelectedLocation { get; set; } = string.Empty;
 
 
-    public string TaskDescription { get; set; }
-    public string GPSLocation { get; set; }
+    public string TaskDescription { get; set; } = string.Empty;
+    public string GPSLocation { get; set; } = string.Empty;
 
     public bool ShowLoading { get; set; } = false;
-    
+
     public event Action OnStateHasChanged = default!;
 
 
@@ -56,7 +56,7 @@ public class StartTaskComponentViewModel
         RaiseStateHasChangedEvent();
     }
 
-    public async Task InitializedAsync() 
+    public async Task InitializedAsync()
     {
         await GetRegion();
 

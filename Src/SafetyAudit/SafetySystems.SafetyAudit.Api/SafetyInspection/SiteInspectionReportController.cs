@@ -24,29 +24,28 @@ public sealed class SiteInspectionReportController : ControllerBase
 
 public sealed class SiteInspectionReportRequest
 {
-    public Guid SiteId { get; set; }
-    public Guid AuditorId { get; set; }
-    public DateTime DateOfInspection { get; set; }
-    public IEnumerable<SiteInspectionIssues> SiteInspectionIssues { get; set; } = [];
+    public Guid SiteId { get; init; }
+    public Guid AuditorId { get; init; }
+    public DateTime DateOfInspection { get; init; }
+    public IEnumerable<SiteInspectionIssues> SiteInspectionIssues { get; init; } = [];
 }
 
 public sealed class SiteInspectionReportResponse
 {
-    public Guid SiteInspectionReportId { get; set; }
-    public Guid SiteId { get; set; }
-    public Guid AuditorId { get; set; }
-    public DateTime DateOfInspection { get; set; }
-    public IEnumerable<SiteInspectionIssues> SiteInspectionIssues { get; set; } = [];
+    public Guid SiteInspectionReportId { get; init; }
+    public Guid SiteId { get; init; }
+    public Guid AuditorId { get; init; }
+    public DateTime DateOfInspection { get; init; }
+    public IEnumerable<SiteInspectionIssues> SiteInspectionIssues { get; init; } = [];
 }
 
 public sealed class SiteInspectionIssues
 {
-    public Guid IssueId { get; set; }
-    public Guid RiskId { get; set; }
-    public Guid SpecificIssueRiskId { get; set; }
-    [Required]
-    public string RiskDescription { get; set; } = string.Empty;
-    public Guid RiskCodeId { get; set; }
-    public Guid IssuesStatusId { get; set; }
-    public DateTime DateOfInspection { get; set; }
+    public Guid IssueId { get; init; }
+    public Guid RiskId { get; init; }
+    public Guid SpecificIssueRiskId { get; init; }
+    public string RiskDescription { get; init; } = string.Empty;
+    public Guid RiskCodeId { get; init; }
+    public Guid IssuesStatusId { get; init; }
+    public DateTime DateOfInspection { get; init; }
 }

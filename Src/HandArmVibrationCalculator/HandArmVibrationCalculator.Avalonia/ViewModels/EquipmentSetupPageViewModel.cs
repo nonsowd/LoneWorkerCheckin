@@ -31,6 +31,10 @@ public partial class EquipmentSetupPageViewModel : ViewModelBase
     public EquipmentSetupPageViewModel(IEquipmentService equipmentService)
     {
         _equipmentService = equipmentService;
+        //Todo: handle ViewModel DI
+        _selectedType = new EquipmentTypeViewModel();
+        _selectedMake = new EquipmentMakeViewModel();
+        _selectedModel = new EquipmentModelViewModel();
     }
 
     [RelayCommand]

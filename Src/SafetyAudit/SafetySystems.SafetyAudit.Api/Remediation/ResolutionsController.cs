@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SafetySystems.SafetyAudit.Api.Remediation;
@@ -24,21 +25,19 @@ public sealed class ResolutionsController : ControllerBase
 
 public sealed class ResolutionsRequest
 {
-    public Guid SiteInspectionReportId { get; set; }
-    public DateTime DateOfResolutions { get; set; }
-    public Guid RiskFindingId { get; set; }
-    [Required]
-    public string ResolutionDetails { get; set; } = string.Empty;
-    public Guid ResolutionStatusId { get; set; }
+    public Guid SiteInspectionReportId { get; init; }
+    public DateTime DateOfResolutions { get; init; }
+    public Guid RiskFindingId { get; init; }
+    public string ResolutionDetails { get; init; } = string.Empty;
+    public Guid ResolutionStatusId { get; init; }
 }
 
 public sealed class ResolutionsResponse
 {
-    public Guid ResolutionsId { get; set; }
-    public Guid SiteInspectionReportId { get; set; }
-    public DateTime DateOfResolutions { get; set; }
-    public Guid RiskFindingId { get; set; }
-    [Required]
-    public string ResolutionDetails { get; set; } = string.Empty;
-    public Guid ResolutionStatusId { get; set; }
+    public Guid ResolutionsId { get; init; }
+    public Guid SiteInspectionReportId { get; init; }
+    public DateTime DateOfResolutions { get; init; }
+    public Guid RiskFindingId { get; init; }
+    public string ResolutionDetails { get; init; } = string.Empty;
+    public Guid ResolutionStatusId { get; init; }
 }

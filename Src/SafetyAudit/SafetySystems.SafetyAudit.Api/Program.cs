@@ -6,7 +6,7 @@ using SafetySystems.SafetyAudit.Infrastructure;
 
 namespace SafetySystems.SafetyAudit.Api;
 
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {

@@ -2,6 +2,6 @@ namespace SafetySystems.LoneWorkerCheckin.Api.Controllers;
 
 public sealed class SiteResponse
 {
-    public Guid SiteId { get; set; }
-    public string SiteName { get; set; } = string.Empty;
+    public Guid SiteId { get; init; }
+    public string SiteName { get; init; } = string.Empty;
 }

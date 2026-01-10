@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Api.Client\SafetySystems.LoneWorkerCheckin.Api.Client.csproj" />
-    <ProjectReference Include="..\SafetySystems.LoneWorkerCheckin.Api\SafetySystems.LoneWorkerCheckin.Api.csproj" />
     <ProjectReference Include="..\..\Common\SafetySystems.Common.ServiceDefaults\SafetySystems.Common.ServiceDefaults.csproj" />
   </ItemGroup>
 </Project>

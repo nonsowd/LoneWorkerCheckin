@@ -44,8 +44,8 @@ public class StartTaskComponentViewModel
             return;
         }
 
-        SiteList = response.Content.Select(dataItem
-            => new SiteViewModel()
+        SiteList = response.Content?.Select(dataItem
+            => new SiteViewModel
             {
                 SiteId = dataItem.SiteId.ToString(),
                 SiteName = dataItem.SiteName
@@ -76,8 +76,8 @@ public class StartTaskComponentViewModel
             return;
         }
 
-        RegionList = response.Content.Select(dataItem
-            => new RegionViewModel()
+        RegionList = response.Content?.Select(dataItem
+            => new RegionViewModel
             {
                 RegionId = dataItem.RegionId.ToString(),
                 RegionName = dataItem.RegionName
@@ -96,8 +96,8 @@ public class StartTaskComponentViewModel
             return;
         }
 
-        LocationList = response.Content.Select(dataItem
-            => new LocationViewModel()
+        LocationList = response.Content?.Select(dataItem
+            => new LocationViewModel
             {
                 LocationId = dataItem.LocationId.ToString(),
                 LocationName = dataItem.LocationName

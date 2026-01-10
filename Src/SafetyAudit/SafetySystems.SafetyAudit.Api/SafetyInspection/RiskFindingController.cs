@@ -31,7 +31,7 @@ public sealed class RiskFindingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     public ActionResult<Guid> PostRiskFinding(RiskFindingRequest riskFindingRequest)
     {
-        _logger.LogInformation("Post riskfinding site id: {request.SiteId}", riskFindingRequest.SiteId);
+        _logger.LogInformation("Post riskfinding site id: {Request_SiteId}", riskFindingRequest.SiteId);
 
         var command = new ReportRiskFindingCommand(riskFindingRequest.ToRiskFinding());
         var commmandResult = _commandHandler.Handle(command);
@@ -60,20 +60,19 @@ public sealed class RiskFindingController : ControllerBase
 
 public sealed class RiskFindingRequest
 {
-    public Guid SiteId { get; set; }
-    public Guid AuditorId { get; set; }
-    public Guid SpecificIssueRiskId { get; set; }
-    public Guid RiskCodeId { get; set; }
-    public IssuesStatusEnum IssuesStatus { get; set; } = IssuesStatusEnum.Open;
-    public DateTime DateOfInspection { get; set; }
-    public string RiskDescription { get; set; } = string.Empty;
+    public Guid SiteId { get; init; }
+    public Guid AuditorId { get; init; }
+    public Guid SpecificIssueRiskId { get; init; }
+    public Guid RiskCodeId { get; init; }
+    public IssuesStatusEnum IssuesStatus { get; init; } = IssuesStatusEnum.Open;
+    public DateTime DateOfInspection { get; init; }
+    public string RiskDescription { get; init; } = string.Empty;
 }
 
 
 public sealed class RiskFindingResponse
 {
-    public Guid RiskFindingId { get; set; }
-
+    public Guid RiskFindingId { get; init; }
 }
 
 public static class RiskFindingMapper

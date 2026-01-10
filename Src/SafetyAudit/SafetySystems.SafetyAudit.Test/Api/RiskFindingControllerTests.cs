@@ -24,12 +24,16 @@ public class RiskFindingControllerTests
             .Returns(Result.Success(new RiskFinding { RiskFindingId = databaseRiskFindingId }));
 
         var sut = new RiskFindingController(_mockLogger.Object, _mockCommandHandler.Object);
-        var request = new RiskFindingRequest();
-        request.AuditorId = Guid.NewGuid();
-        request.SpecificIssueRiskId = Guid.NewGuid();
-        request.RiskCodeId = Guid.NewGuid();
-        request.DateOfInspection = DateTime.Now;
-        request.RiskDescription = Guid.NewGuid().ToString();
+        var request = new RiskFindingRequest
+        {
+            SiteId = Guid.NewGuid(),
+            AuditorId = Guid.NewGuid(),
+            SpecificIssueRiskId = Guid.NewGuid(),
+            RiskCodeId = Guid.NewGuid(),
+            IssuesStatus = IssuesStatusEnum.Open,
+            DateOfInspection = DateTime.Now,
+            RiskDescription = Guid.NewGuid().ToString()
+        };
 
         // Act
         var response = sut.PostRiskFinding(request);

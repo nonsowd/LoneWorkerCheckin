@@ -1,8 +1,8 @@
 namespace SafetySystems.LoneWorkerCheckin.Domain;
 
-public sealed class Region
+public abstract class Region
 {
-    public sealed class Names
+    public abstract class Names
     {
         public const string Wales = "Wales";
         public const string SouthEast = "South East";

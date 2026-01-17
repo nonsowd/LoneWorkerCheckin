@@ -1,8 +1,6 @@
-using Aspire.Hosting;
-
 var builder = DistributedApplication.CreateBuilder(args);
 
-var keycloak = builder.AddKeycloak("keycloak", 8080)
+builder.AddKeycloak("keycloak", 8080)
     .WithDataVolume("keycloak-data")
     .WithLifetime(ContainerLifetime.Persistent);
 
@@ -33,4 +31,4 @@ builder.AddProject<Projects.SafetySystems_Common_EFDataMigrationService>("safety
     .WithReference(loneworkersqldb).WaitFor(loneworkersqldb)
     .WithReference(safetyauditpostgresdb).WaitFor(safetyauditpostgresdb);
 
-builder.Build().Run();
+await builder.Build().RunAsync();

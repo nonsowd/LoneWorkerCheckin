@@ -81,37 +81,27 @@
     </MudCard>
 </div>
 
-
 @code
 {
     protected override async Task OnInitializedAsync()
     {
-        _viewModel.OnStateHasChanged += () =>
-        {
-            this.StateHasChanged();
-        };
+        _viewModel.OnStateHasChanged += StateHasChanged;
         await _viewModel.InitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        geoLocation.OnGeolocationPositionError += OnGeolocationPositionError;
-        geoLocation.OnCoordinatesChanged += OnCoordinatesChanaged;
-        //await geoLocation.RequestGeoLocationAsync();
+        geoLocation.OnGeolocationPositionError += error =>
+            throw new Exception($"Error obtaining Geolocation position: Code: {error.Code}, Message: '{error.Message}'");
 
+        geoLocation.OnCoordinatesChanged += coordinates =>
+        {
+            _viewModel.GPSLocation = coordinates.ToString();
+            _ = InvokeAsync(StateHasChanged);
+            return ValueTask.CompletedTask;
+        };
         // TODO: Move code to viewModel
 
         await base.OnAfterRenderAsync(firstRender);
-    }
-
-    private async ValueTask OnCoordinatesChanaged(Coordinate coordinates)
-    {
-        _viewModel.GPSLocation = coordinates.ToString();
-        this.StateHasChanged();
-    }
-
-    private async ValueTask OnGeolocationPositionError(GeolocationPositionError error)
-    {
-        throw new Exception($"Error obtaining Geolocation position: Code: {error.Code}, Message: '{error.Message}'");
     }
 }

@@ -1,0 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
+[assembly: SuppressMessage("SonarAnalyzer.CSharp", "S6964", Justification = "Value type input is validated via FluentValidation (NotEmpty); under-posting is explicitly handled and returns ValidationProblemDetails.", Scope = "member", Target = "~P:SafetySystems.LoneWorkerCheckin.Api.Controllers.CheckinRequest.UserId")]
+[assembly: SuppressMessage("SonarAnalyzer.CSharp", "S6964", Justification = "Value type input is validated via FluentValidation (NotEmpty); under-posting is explicitly handled and returns ValidationProblemDetails.", Scope = "member", Target = "~P:SafetySystems.LoneWorkerCheckin.Api.Controllers.CheckinRequest.SiteId")]
+[assembly: SuppressMessage("SonarAnalyzer.CSharp", "S6964", Justification = "Value type input is validated via FluentValidation (NotEmpty); under-posting is explicitly handled and returns ValidationProblemDetails.", Scope = "member", Target = "~P:SafetySystems.LoneWorkerCheckin.Api.Controllers.CheckinRequest.LocationId")]

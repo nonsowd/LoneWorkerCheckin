@@ -11,6 +11,7 @@ using Refit;
 using SafetySystems.Common.ServiceDefaults;
 using SafetySystems.LoneWorkerCheckin.Blazor.ViewModels;
 using SafetySystems.LoneWorkerCheckin.Blazor.Services;
+#pragma warning disable S1075 // Refactor your code not to use hardcoded absolute paths or URIs.
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,4 +63,6 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
-app.Run();
+await app.RunAsync();
+
+#pragma warning restore S1075 // Refactor your code not to use hardcoded absolute paths or URIs.

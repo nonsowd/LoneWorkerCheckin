@@ -29,29 +29,25 @@ public interface IGeoLocationBroker
 
 public class GeoLocationBroker : IGeoLocationBroker
 {
-    private readonly IJSRuntime jsRuntime;
-    private readonly Lazy<Task<IJSObjectReference>> moduleTask;
-    private readonly DotNetObjectReference<GeoLocationBroker> dotNetObjectReference;
+    private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
+    private readonly DotNetObjectReference<GeoLocationBroker> _dotNetObjectReference;
 
     public GeoLocationBroker(IJSRuntime jsRuntime)
     {
-        this.jsRuntime = jsRuntime;
-
-        moduleTask = new(() => this.jsRuntime!.InvokeAsync<IJSObjectReference>(
+        _moduleTask = new(() => jsRuntime!.InvokeAsync<IJSObjectReference>(
             identifier: "import",
             args: "./scripts/geoLocationJsInterop.js")
         .AsTask());
 
-        dotNetObjectReference = DotNetObjectReference.Create(this);
+        _dotNetObjectReference = DotNetObjectReference.Create(this);
     }
 
     public async ValueTask RequestGeoLocationAsync(bool enableHighAccuracy, int maximumAgeInMilliseconds)
     {
-        var module = await moduleTask.Value;
-        var dotNetObjectReference = this.dotNetObjectReference;
+        var module = await _moduleTask.Value;
 
         await module.InvokeVoidAsync(identifier: "getCurrentPosition",
-                                     dotNetObjectReference,
+                                     _dotNetObjectReference,
                                      enableHighAccuracy,
                                      maximumAgeInMilliseconds);
     }

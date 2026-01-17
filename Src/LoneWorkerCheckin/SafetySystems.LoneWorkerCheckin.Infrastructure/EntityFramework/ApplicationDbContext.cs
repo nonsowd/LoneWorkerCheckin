@@ -11,45 +11,9 @@ namespace SafetySystems.LoneWorkerCheckin.Infrastructure.EntityFramework;
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions options)
-        : base(options)
-    {
-    }
-    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-
-        optionsBuilder.UseAsyncSeeding(async (context, _, cancellationToken) =>
-        {
-            // Region seed data ...
-            var regionSeedData = GetRegionSeedData();
-            if(context.Set<RegionEntity>().Any() == false)
-            {
-                await context.Set<RegionEntity>().AddRangeAsync(regionSeedData);
-            }
-
-            // Site seed data ...
-            var siteSeedData = GetSiteSeedData(regionSeedData);
-            if (context.Set<SiteEntity>().Any() == false)
-            {
-                await context.Set<SiteEntity>().AddRangeAsync(siteSeedData);
-            }
-
-            // Location seed data ...
-            var locationSeedData = GetLocationSeedData();
-            if (context.Set<LocationEntity>().Any() == false)
-            {
-                await context.Set<LocationEntity>().AddRangeAsync(locationSeedData);
-            }
-            context.SaveChanges();
-        });
-    }*/
+        : base(options) { }
 
     public string ConnectionString => Database.GetDbConnection().ConnectionString;
-
-    public async Task EnsureDatabaseIsSetupAsync()
-    {
-   //     await Database.MigrateAsync();
-    }
 
     public DbSet<RegionEntity> Regions { get; set; } = null!;
     public DbSet<SiteEntity> Sites { get; set; } = null!;
@@ -65,7 +29,7 @@ public class ApplicationDbContext : DbContext
         OnModelCheckinCreating(modelBuilder);
     }
 
-    private void OnModelRegionCreating(ModelBuilder modelBuilder)
+    private static void OnModelRegionCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<RegionEntity>().ToTable("Regions");
         modelBuilder.Entity<RegionEntity>().HasKey(x => x.RegionId);
@@ -76,7 +40,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<RegionEntity>().HasIndex(x => x.RegionName).IsUnique();
     }
 
-    private void OnModelSiteCreating(ModelBuilder modelBuilder)
+    private static void OnModelSiteCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SiteEntity>().ToTable("Sites");
         modelBuilder.Entity<SiteEntity>().HasKey(x => x.SiteId);
@@ -89,7 +53,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<SiteEntity>().HasIndex(x => x.SiteName).IsUnique();
     }
 
-    private void OnModelLocationCreating(ModelBuilder modelBuilder)
+    private static void OnModelLocationCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<LocationEntity>().ToTable("Locations");
         modelBuilder.Entity<LocationEntity>().HasKey(x => x.LocationId);
@@ -100,14 +64,12 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<LocationEntity>().HasIndex(x => x.LocationName).IsUnique();
     }
 
-    private void OnModelCheckinCreating(ModelBuilder modelBuilder)
+    private static void OnModelCheckinCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<CheckinEntity>().ToTable("Checkins");
         modelBuilder.Entity<CheckinEntity>().HasKey(x => x.CheckinId);
 
         // TODO: MAP foreign keys for; UserId, SiteId, LocationId
-
-        // modelBuilder.Entity<SiteEntity>().HasOne(r => r.Region).WithMany().OnDelete(DeleteBehavior.NoAction).HasForeignKey(x => x.RegionId);
 
         modelBuilder.Entity<CheckinEntity>().Property(x => x.Latitude)
             .IsRequired();
@@ -119,6 +81,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<SiteEntity>().HasIndex(x => x.SiteName).IsUnique();
     }
 
+    // TODO: data set up
+#pragma warning disable S1144
     private List<RegionEntity> GetRegionSeedData()
         => new List<RegionEntity>()
         {
@@ -152,6 +116,5 @@ public class ApplicationDbContext : DbContext
             new LocationEntity() { LocationId = Guid.NewGuid(), LocationName = "Dinning room" },
             new LocationEntity() { LocationId = Guid.NewGuid(), LocationName = "Reception" }
         };
-
-
+#pragma warning restore S1144
 }

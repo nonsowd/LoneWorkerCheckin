@@ -27,9 +27,5 @@ catch (Exception e)
 }
 
 var host = builder.Build();
-host.Run();
+await host.RunAsync();
 
-
-// var connectionString = builder.Configuration.GetConnectionString("DbName");
-// builder.Services.AddDbContextFactory<DbContext>(dbContext => dbContext.UseNpgsql(connectionString));
-// builder.EnrichNpgsqlDbContext<DbContext>(c => c.DisableTracing = true);
